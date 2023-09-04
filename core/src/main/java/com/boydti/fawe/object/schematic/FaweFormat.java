@@ -111,10 +111,15 @@ public class FaweFormat implements ClipboardReader, ClipboardWriter {
             ox = in.readShort();
             oy = in.readShort();
             oz = in.readShort();
+            int minX = in.readInt();
+            int minY = in.readInt();
+            int minZ = in.readInt();
 
-            Vector origin = new Vector(0, 0, 0);
-            CuboidRegion region = new CuboidRegion(origin, origin.add(width, height, length).subtract(Vector.ONE));
+            Vector min = new Vector(minX, minY, minZ);
+            CuboidRegion region = new CuboidRegion(min, min.add(width, height, length));
+
             clipboard = new BlockArrayClipboard(region, clipboardId);
+
             try {
                 for (int y = 0; y < height; y++) {
                     for (int x = 0; x < width; x++) {
@@ -122,8 +127,14 @@ public class FaweFormat implements ClipboardReader, ClipboardWriter {
                             int combined = in.readUnsignedShort();
                             int id = FaweCache.getId(combined);
                             int data = FaweCache.getData(combined);
+
                             BaseBlock block = FaweCache.getBlock(id, data);
-                            clipboard.setBlock(x, y, z, block);
+                            clipboard.setBlock(
+                                    x + min.getBlockX(),
+                                    y + min.getBlockY(),
+                                    z + min.getBlockZ(),
+                                    block
+                            );
                         }
                     }
                 }
@@ -225,6 +236,7 @@ public class FaweFormat implements ClipboardReader, ClipboardWriter {
             }
         } catch (Throwable ignore) {
         }
+
         clipboard.setOrigin(new Vector(ox, oy, oz));
         return clipboard;
     }
@@ -312,6 +324,11 @@ public class FaweFormat implements ClipboardReader, ClipboardWriter {
                 out.writeShort((short) origin.getBlockX());
                 out.writeShort((short) origin.getBlockY());
                 out.writeShort((short) origin.getBlockZ());
+
+                out.writeInt(min.getBlockX());
+                out.writeInt(min.getBlockY());
+                out.writeInt(min.getBlockZ());
+
                 MutableBlockVector mutable = new MutableBlockVector(0, 0, 0);
                 for (int y = min.getBlockY(); y <= max.getBlockY(); y++) {
                     mutable.mutY(y);
