@@ -23,6 +23,7 @@ import com.boydti.fawe.util.MathMan;
 import com.sk89q.worldedit.math.transform.AffineTransform;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * An immutable 2-dimensional vector.
@@ -618,20 +619,17 @@ public class Vector2D implements Serializable {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Vector2D)) {
-            return false;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        Vector2D other = (Vector2D) obj;
-        return other.getX() == this.getX() && other.getZ() == this.getZ();
-
+        Vector2D vector2D = (Vector2D) o;
+        return Double.compare(x, vector2D.x) == 0 && Double.compare(z, vector2D.z) == 0;
     }
 
     @Override
     public int hashCode() {
-        return ((new Double(getX())).hashCode() >> 13) ^
-                (new Double(getZ())).hashCode();
+        return Objects.hash(x, z);
     }
 
     @Override
