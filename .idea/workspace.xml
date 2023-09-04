@@ -14,9 +14,6 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
-    <projectState path="$PROJECT_DIR$">
-      <ProjectState />
-    </projectState>
   </component>
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
@@ -63,9 +60,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Workspace",
+    "last_opened_file_path": "C:/Users/Felipe/Desktop/RedeFantasy-Forks/FastAsyncWorldedit-Legacy",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,7 +69,7 @@
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
@@ -88,7 +84,7 @@
       <command value="gradlew build" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.FastAsyncWorldedit-Legacy [build] (2)">
+  <component name="RunManager" selected="Gradle.FastAsyncWorldedit-Legacy [build]">
     <configuration name="FastAsyncWorldedit-Legacy [build] (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -201,11 +197,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.FastAsyncWorldedit-Legacy [build]" />
+        <item itemvalue="Gradle.FastAsyncWorldedit-Legacy [clean]" />
         <item itemvalue="Gradle.FastAsyncWorldedit-Legacy [build] (2)" />
         <item itemvalue="Gradle.FastAsyncWorldedit-Legacy [clean] (1)" />
         <item itemvalue="Gradle.FastAsyncWorldedit-Legacy [build] (1)" />
-        <item itemvalue="Gradle.FastAsyncWorldedit-Legacy [clean]" />
-        <item itemvalue="Gradle.FastAsyncWorldedit-Legacy [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -226,5 +222,20 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/core/src/main/java/com/boydti/fawe/object/clipboard/FaweClipboard.java</url>
+          <line>25</line>
+          <properties class="com.boydti.fawe.object.clipboard.FaweClipboard" method="setBlock">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
