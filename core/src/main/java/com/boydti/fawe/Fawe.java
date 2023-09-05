@@ -11,7 +11,6 @@ import com.boydti.fawe.util.*;
 import com.boydti.fawe.util.chat.ChatManager;
 import com.boydti.fawe.util.chat.PlainChatManager;
 import com.boydti.fawe.util.cui.CUI;
-import com.boydti.fawe.util.metrics.BStats;
 import com.sk89q.jnbt.*;
 import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.Vector;
@@ -150,8 +149,6 @@ public class Fawe {
     private DefaultTransformParser transformParser;
     private ChatManager chatManager = new PlainChatManager();
 
-    private BStats stats;
-
     /**
      * Get the implementation specific class
      *
@@ -217,10 +214,10 @@ public class Fawe {
      * The platform specific implementation
      */
     private final IFawe IMP;
-    private Thread thread = Thread.currentThread();
+    private Thread thread;
 
     private Fawe(final IFawe implementation) {
-        this.INSTANCE = this;
+        INSTANCE = this;
         this.IMP = implementation;
         this.thread = Thread.currentThread();
         /*
@@ -230,28 +227,11 @@ public class Fawe {
 
         TaskManager.IMP = this.IMP.getTaskManager();
 
-        TaskManager.IMP.async(new Runnable() {
-            @Override
-            public void run() {
-                MainUtil.deleteOlder(MainUtil.getFile(IMP.getDirectory(), Settings.IMP.PATHS.HISTORY), TimeUnit.DAYS.toMillis(Settings.IMP.HISTORY.DELETE_AFTER_DAYS), false);
-                MainUtil.deleteOlder(MainUtil.getFile(IMP.getDirectory(), Settings.IMP.PATHS.CLIPBOARD), TimeUnit.DAYS.toMillis(Settings.IMP.CLIPBOARD.DELETE_AFTER_DAYS), false);
-            }
+        TaskManager.IMP.async(() -> {
+            MainUtil.deleteOlder(MainUtil.getFile(IMP.getDirectory(), Settings.IMP.PATHS.HISTORY), TimeUnit.DAYS.toMillis(Settings.IMP.HISTORY.DELETE_AFTER_DAYS), false);
+            MainUtil.deleteOlder(MainUtil.getFile(IMP.getDirectory(), Settings.IMP.PATHS.CLIPBOARD), TimeUnit.DAYS.toMillis(Settings.IMP.CLIPBOARD.DELETE_AFTER_DAYS), false);
         });
 
-        if (Settings.IMP.METRICS) {
-            try {
-                this.stats = new BStats();
-                this.IMP.startMetrics();
-                TaskManager.IMP.later(new Runnable() {
-                    @Override
-                    public void run() {
-                        stats.start();
-                    }
-                }, 1);
-            } catch (Throwable ignore) {
-                ignore.printStackTrace();
-            }
-        }
         this.setupCommands();
         /*
          * Instance independent stuff
@@ -292,12 +272,6 @@ public class Fawe {
             updater = new Updater();
             TaskManager.IMP.async(() -> update());
             TaskManager.IMP.repeatAsync(() -> update(), 36000);
-        }
-    }
-
-    public void onDisable() {
-        if (stats != null) {
-            stats.close();
         }
     }
 

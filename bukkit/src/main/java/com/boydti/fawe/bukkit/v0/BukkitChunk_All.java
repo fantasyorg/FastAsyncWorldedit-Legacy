@@ -19,11 +19,13 @@ import com.sk89q.worldedit.blocks.BlockID;
 import com.sk89q.worldedit.bukkit.BukkitUtil;
 import com.sk89q.worldedit.bukkit.adapter.BukkitImplAdapter;
 import com.sk89q.worldedit.entity.BaseEntity;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
@@ -126,12 +128,12 @@ public class BukkitChunk_All extends CharFaweChunk<Chunk, BukkitQueue_All> {
             case BlockID.BROWN_MUSHROOM:
             case BlockID.RED_MUSHROOM:
                 return true;
-            default: return false;
+            default:
+                return false;
         }
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -148,12 +150,11 @@ public class BukkitChunk_All extends CharFaweChunk<Chunk, BukkitQueue_All> {
         final int bz = getZ() << 4;
         if (layer == -1) {
             BukkitImplAdapter adapter = BukkitQueue_0.getAdapter();
-            if (adapter != null)
-            {
+            if (adapter != null) {
                 // Run change task
                 RunnableVal2<FaweChunk, FaweChunk> task = parent.getChangeTask();
                 BukkitChunk_All_ReadonlySnapshot previous;
-                if (task != null){
+                if (task != null) {
                     ChunkSnapshot snapshot = parent.ensureChunkLoaded(getX(), getZ());
                     previous = new BukkitChunk_All_ReadonlySnapshot(parent, snapshot, biomes != null);
                     for (BlockState tile : chunk.getTileEntities()) {
@@ -170,42 +171,44 @@ public class BukkitChunk_All extends CharFaweChunk<Chunk, BukkitQueue_All> {
                 } else {
                     previous = null;
                 }
+
                 // Set entities
-                if (adapter != null) {
-                    Set<CompoundTag> entitiesToSpawn = this.getEntities();
-                    if (!entitiesToSpawn.isEmpty()) {
-                        for (CompoundTag tag : entitiesToSpawn) {
-                            String id = tag.getString("Id");
-                            ListTag posTag = tag.getListTag("Pos");
-                            ListTag rotTag = tag.getListTag("Rotation");
-                            if (id == null || posTag == null || rotTag == null) {
-                                Fawe.debug("Unknown entity tag: " + tag);
-                                continue;
-                            }
-                            double x = posTag.getDouble(0);
-                            double y = posTag.getDouble(1);
-                            double z = posTag.getDouble(2);
-                            float yaw = rotTag.getFloat(0);
-                            float pitch = rotTag.getFloat(1);
-                            Location loc = new Location(world, x, y, z, yaw, pitch);
-                            Entity created = adapter.createEntity(loc, new BaseEntity(id, tag));
-                            if (previous != null) {
-                                UUID uuid = created.getUniqueId();
-                                Map<String, Tag> map = ReflectionUtils.getMap(tag.getValue());
-                                map.put("UUIDLeast", new LongTag(uuid.getLeastSignificantBits()));
-                                map.put("UUIDMost", new LongTag(uuid.getMostSignificantBits()));
-                            }
+                Set<CompoundTag> entitiesToSpawn = this.getEntities();
+                if (!entitiesToSpawn.isEmpty()) {
+                    for (CompoundTag tag : entitiesToSpawn) {
+                        String id = tag.getString("Id");
+                        ListTag posTag = tag.getListTag("Pos");
+                        ListTag rotTag = tag.getListTag("Rotation");
+                        if (id == null) {
+                            Fawe.debug("Unknown entity tag: " + tag);
+                            continue;
                         }
-                    }
-                    HashSet<UUID> entsToRemove = this.getEntityRemoves();
-                    if (!entsToRemove.isEmpty()) {
-                        for (Entity entity : chunk.getEntities()) {
-                            if (entsToRemove.contains(entity.getUniqueId())) {
-                                entity.remove();
-                            }
+
+                        double x = posTag.getDouble(0);
+                        double y = posTag.getDouble(1);
+                        double z = posTag.getDouble(2);
+                        float yaw = rotTag.getFloat(0);
+                        float pitch = rotTag.getFloat(1);
+                        Location loc = new Location(world, x, y, z, yaw, pitch);
+                        Entity created = adapter.createEntity(loc, new BaseEntity(id, tag));
+                        if (previous != null) {
+                            UUID uuid = created.getUniqueId();
+                            Map<String, Tag> map = ReflectionUtils.getMap(tag.getValue());
+                            map.put("UUIDLeast", new LongTag(uuid.getLeastSignificantBits()));
+                            map.put("UUIDMost", new LongTag(uuid.getMostSignificantBits()));
                         }
                     }
                 }
+
+                HashSet<UUID> entsToRemove = this.getEntityRemoves();
+                if (!entsToRemove.isEmpty()) {
+                    for (Entity entity : chunk.getEntities()) {
+                        if (entsToRemove.contains(entity.getUniqueId())) {
+                            entity.remove();
+                        }
+                    }
+                }
+
                 if (previous != null) {
                     task.run(previous, this);
                 }
@@ -233,6 +236,7 @@ public class BukkitChunk_All extends CharFaweChunk<Chunk, BukkitQueue_All> {
                 layer++;
             }
         }
+
         mainloop:
         do {
             if (place) {
@@ -244,74 +248,79 @@ public class BukkitChunk_All extends CharFaweChunk<Chunk, BukkitQueue_All> {
                 more = false;
                 break;
             }
+
             try {
                 // Efficiently merge sections
                 int changes = getCount(layer);
                 if (changes == 0) {
                     continue;
                 }
+
                 final char[] newArray = sections[layer];
                 if (newArray == null) {
                     continue;
                 }
+
                 final byte[] cacheX = FaweCache.CACHE_X[layer];
                 final short[] cacheY = FaweCache.CACHE_Y[layer];
                 final byte[] cacheZ = FaweCache.CACHE_Z[layer];
-                boolean checkTime = !((getAir(layer) == 4096 || (getCount(layer) == 4096 && getAir(layer) == 0) || (getCount(layer) == getAir(layer))));
-                if (!checkTime) {
+
+                if (getAir(layer) == 4096 || (getCount(layer) == 4096 && getAir(layer) == 0) || (getCount(layer) == getAir(layer))) {
                     final ArrayList<Thread> threads = new ArrayList<Thread>();
                     for (int k = 0; k < 16; k++) {
                         final int l = k << 8;
                         final int y = cacheY[l];
-                        final Thread thread = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Location mutableLoc = null;
-                                for (int m = l; m < l + 256; m++) {
-                                    char combined = newArray[m];
-                                    switch (combined) {
-                                        case 0:
-                                            continue;
-                                        case 1:
-                                            if (!place) {
-                                                int x = cacheX[m];
-                                                int z = cacheZ[m];
-                                                setBlock(chunk.getBlock(x, y, z), 0, (byte) 0);
-                                            }
-                                            continue;
-                                        default:
-                                            if (place) {
-                                                int x = cacheX[m];
-                                                int z = cacheZ[m];
-                                                int id = combined >> 4;
-                                                if (FaweCache.hasNBT(id) && parent.getAdapter() != null) {
-                                                    CompoundTag nbt = getTile(x, y, z);
-                                                    if (nbt != null) {
-                                                        if (mutableLoc == null) mutableLoc = new Location(world, 0, 0, 0);
-                                                        mutableLoc.setX(bx + x);
-                                                        mutableLoc.setY(y);
-                                                        mutableLoc.setZ(bz + z);
-                                                        synchronized (BukkitChunk_All.this) {
-                                                            parent.getAdapter().setBlock(mutableLoc, new BaseBlock(id, combined & 0xF, nbt), false);
-                                                        }
-                                                        continue;
-                                                    }
-                                                }
-                                                Block block = chunk.getBlock(x, y, z);
-                                                byte data = (byte) (combined & 0xF);
-                                                if (canTick(id)) {
+
+                        Thread thread = new Thread(() -> {
+                            Location mutableLoc = new Location(world, 0, 0, 0);
+
+                            for (int m = l; m < l + 256; m++) {
+                                char combined = newArray[m];
+                                switch (combined) {
+                                    case 0:
+                                        continue;
+                                    case 1:
+                                        if (!place) {
+                                            int x = cacheX[m];
+                                            int z = cacheZ[m];
+                                            setBlock(chunk.getBlock(x, y, z), 0, (byte) 0);
+                                        }
+
+                                        continue;
+                                    default:
+                                        if (place) {
+                                            int x = cacheX[m];
+                                            int z = cacheZ[m];
+                                            int id = combined >> 4;
+
+                                            if (FaweCache.hasNBT(id) && parent.getAdapter() != null) {
+                                                CompoundTag nbt = getTile(x, y, z);
+                                                if (nbt != null) {
+                                                    mutableLoc.setX(bx + x);
+                                                    mutableLoc.setY(y);
+                                                    mutableLoc.setZ(bz + z);
+
                                                     synchronized (BukkitChunk_All.this) {
-                                                        setBlock(block, id, data);
+                                                        parent.getAdapter().setBlock(mutableLoc, new BaseBlock(id, combined & 0xF, nbt), false);
                                                     }
-                                                } else {
+                                                    continue;
+                                                }
+                                            }
+
+                                            Block block = chunk.getBlock(x, y, z);
+                                            byte data = (byte) (combined & 0xF);
+                                            if (canTick(id)) {
+                                                synchronized (BukkitChunk_All.this) {
                                                     setBlock(block, id, data);
                                                 }
+                                            } else {
+                                                setBlock(block, id, data);
                                             }
-                                            continue;
-                                    }
+                                        }
                                 }
                             }
                         });
+
                         threads.add(thread);
                         thread.start();
                     }
@@ -319,7 +328,7 @@ public class BukkitChunk_All extends CharFaweChunk<Chunk, BukkitQueue_All> {
                         thread.join();
                     }
                 } else {
-                    for (;index < 4096; index++) {
+                    for (; index < 4096; index++) {
                         int j = place ? index : 4095 - index;
                         char combined = newArray[j];
                         switch (combined) {
@@ -343,33 +352,34 @@ public class BukkitChunk_All extends CharFaweChunk<Chunk, BukkitQueue_All> {
                                 } else if (!place) {
                                     continue;
                                 }
-                                if (light != place) {
-                                    light = light && getParent().getSettings().LIGHTING.MODE != 0;
-                                    if (light) {
-                                        parent.enableLighting(disableResult);
-                                    }
-                                    int data = combined & 0xF;
-                                    int x = cacheX[j];
-                                    int z = cacheZ[j];
-                                    int y = cacheY[j];
-                                    if (FaweCache.hasNBT(id) && parent.getAdapter() != null) {
-                                        CompoundTag tile = getTile(x, y, z);
-                                        if (tile != null) {
-                                            parent.getAdapter().setBlock(new Location(world, bx + x, y, bz + z), new BaseBlock(id, combined & 0xF, tile), false);
-                                            break;
-                                        }
-                                    }
-                                    Block block = chunk.getBlock(x, y, z);
-                                    setBlock(block, id, (byte) data);
-                                    if (light) {
-                                        parent.disableLighting(disableResult);
-                                    }
-                                } else {
-                                    continue;
+
+                                light = light && getParent().getSettings().LIGHTING.MODE != 0;
+                                if (light) {
+                                    parent.enableLighting(disableResult);
                                 }
+
+                                int data = combined & 0xF;
+                                int x = cacheX[j];
+                                int z = cacheZ[j];
+                                int y = cacheY[j];
+
+                                if (FaweCache.hasNBT(id) && parent.getAdapter() != null) {
+                                    CompoundTag tile = getTile(x, y, z);
+                                    if (tile != null) {
+                                        parent.getAdapter().setBlock(new Location(world, bx + x, y, bz + z), new BaseBlock(id, combined & 0xF, tile), false);
+                                        break;
+                                    }
+                                }
+
+                                Block block = chunk.getBlock(x, y, z);
+                                setBlock(block, id, (byte) data);
+                                if (light) {
+                                    parent.disableLighting(disableResult);
+                                }
+
                                 break;
                         }
-                        if (checkTime && System.currentTimeMillis() - start > recommended) {
+                        if (System.currentTimeMillis() - start > recommended) {
                             index++;
                             break mainloop;
                         }
@@ -379,10 +389,12 @@ public class BukkitChunk_All extends CharFaweChunk<Chunk, BukkitQueue_All> {
             } catch (final Throwable e) {
                 MainUtil.handleError(e);
             }
+
         } while (System.currentTimeMillis() - start < recommended);
         if (more || place) {
             this.addToQueue();
         }
+
         parent.resetLighting(disableResult);
         return this;
     }

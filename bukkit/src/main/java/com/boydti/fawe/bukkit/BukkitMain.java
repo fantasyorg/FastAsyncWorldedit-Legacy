@@ -73,14 +73,10 @@ public class BukkitMain extends JavaPlugin {
                 return;
             }
         }
+
         FaweBukkit imp = new FaweBukkit(this);
         if (toLoad != null) {
             Bukkit.getPluginManager().enablePlugin(toLoad);
         }
-    }
-
-    @Override
-    public void onDisable() {
-        Fawe.get().onDisable();
     }
 }

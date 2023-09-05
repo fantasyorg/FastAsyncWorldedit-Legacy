@@ -29,7 +29,6 @@ import com.boydti.fawe.object.clipboard.MultiClipboardHolder;
 import com.boydti.fawe.object.clipboard.URIClipboardHolder;
 import com.boydti.fawe.object.clipboard.remap.ClipboardRemapper;
 import com.boydti.fawe.object.schematic.StructureFormat;
-import com.boydti.fawe.object.schematic.visualizer.SchemVis;
 import com.boydti.fawe.util.MainUtil;
 import com.boydti.fawe.util.chat.Message;
 import com.sk89q.minecraft.util.commands.Command;
@@ -56,7 +55,6 @@ import com.sk89q.worldedit.util.command.parametric.Optional;
 import com.sk89q.worldedit.util.io.file.FilenameException;
 import com.sk89q.worldedit.world.registry.WorldData;
 
-import javax.annotation.Nullable;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -65,14 +63,12 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
 import java.util.*;
-import java.util.concurrent.atomic.LongAdder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 
 import static com.boydti.fawe.util.ReflectionUtils.as;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Commands that work with schematic files.
@@ -495,71 +491,6 @@ public class SchematicCommands extends MethodCommands {
             first = true;
         }
         m.send(actor);
-    }
-
-
-    @Command(
-            aliases = {"show"},
-            desc = "Show a schematic",
-            usage = "[global|mine|<filter>]",
-            min = 0,
-            max = -1,
-            flags = "dnp",
-            help = "List all schematics in the schematics directory\n" +
-                    " -f <format> restricts by format\n"
-    )
-    @CommandPermissions("worldedit.schematic.show")
-    public void show(Player player, CommandContext args, @Switch('f') String formatName) {
-        FawePlayer fp = FawePlayer.wrap(player);
-        if (args.argsLength() == 0) {
-            if (fp.getSession().getVirtualWorld() != null) fp.setVirtualWorld(null);
-            else {
-                BBC.COMMAND_SYNTAX.send(player, "/" + Commands.getAlias(SchematicCommands.class, "schematic") + " " + getCommand().aliases()[0] + " " + getCommand().usage());
-            }
-            return;
-        }
-        LocalConfiguration config = worldEdit.getConfiguration();
-        File dir = worldEdit.getWorkingDirectoryFile(config.saveDir);
-        try {
-            SchemVis visExtent = new SchemVis(fp);
-            LongAdder count = new LongAdder();
-            UtilityCommands.getFiles(dir, player, args, 0, Character.MAX_VALUE, formatName, Settings.IMP.PATHS.PER_PLAYER_SCHEMATICS, file -> {
-                if (file.isFile()) {
-                    try {
-                        visExtent.add(file);
-                        count.add(1);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
-            long total = count.longValue();
-            if (total == 0) {
-                if (args.getJoinedStrings(0).toLowerCase().startsWith("all")) {
-                    BBC.SCHEMATIC_NONE.send(player);
-                } else {
-                    String joined = args.getJoinedStrings(0);
-                    String cmd = "/" + Commands.getAlias(SchematicCommands.class, "schematic") + " " + getCommand().aliases()[0] + " all " + joined;
-                    BBC.HELP_SUGGEST.send(player, joined, cmd);
-                }
-                return;
-            }
-            visExtent.bind();
-            visExtent.update();
-
-            String cmdPrefix = "/" + (config.noDoubleSlash ? "" : "/");
-            String cmdShow = Commands.getAlias(ClipboardCommands.class, "schematic") + " " + Commands.getAlias(ClipboardCommands.class, "show");
-            BBC.SCHEMATIC_SHOW.send(fp, count.longValue(), args.getJoinedStrings(0), cmdShow);
-
-            if (fp.getSession().getExistingClipboard() != null) {
-                String cmd = cmdPrefix + Commands.getAlias(ClipboardCommands.class, "clearclipboard");
-                BBC.SCHEMATIC_PROMPT_CLEAR.send(fp, cmd);
-            }
-
-        } catch (Throwable e) {
-            fp.setVirtualWorld(null);
-            throw e;
-        }
     }
 
     @Command(

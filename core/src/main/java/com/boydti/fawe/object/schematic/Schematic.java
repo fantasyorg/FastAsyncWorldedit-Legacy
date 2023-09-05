@@ -117,7 +117,7 @@ public class Schematic {
     public EditSession paste(World world, Vector to, boolean allowUndo, boolean pasteAir, @Nullable Transform transform) {
         checkNotNull(world);
         checkNotNull(to);
-        Region region = clipboard.getRegion();
+
         EditSession editSession;
         if (world instanceof EditSession) {
             editSession = (EditSession) world;
@@ -129,6 +129,7 @@ public class Schematic {
                 editSession = builder.changeSetNull().fastmode(true).build();
             }
         }
+
         Extent extent = clipboard;
         Mask sourceMask = editSession.getSourceMask();
         if (transform != null && !transform.isIdentity()) {
@@ -138,15 +139,18 @@ public class Schematic {
             editSession.flushQueue();
             return editSession;
         }
+
         ForwardExtentCopy copy = new ForwardExtentCopy(extent, clipboard.getRegion(), clipboard.getOrigin(), editSession, to);
         if (transform != null && !transform.isIdentity()) {
             copy.setTransform(transform);
         }
+
         if (sourceMask != null) {
             new MaskTraverser(sourceMask).reset(extent);
             copy.setSourceMask(sourceMask);
             editSession.setSourceMask(null);
         }
+
         if (!pasteAir) {
             copy.setSourceMask(new ExistingBlockMask(clipboard));
         }
@@ -161,16 +165,16 @@ public class Schematic {
 
     public void paste(Extent extent, WorldData worldData, Vector to, boolean pasteAir, Transform transform) {
         checkNotNull(transform);
-        Region region = clipboard.getRegion();
+
         Extent source = clipboard;
-        if (worldData != null && transform != null) {
+        if (worldData != null) {
             source = new BlockTransformExtent(clipboard, transform, worldData.getBlockRegistry());
         }
+
         ForwardExtentCopy copy = new ForwardExtentCopy(source, clipboard.getRegion(), clipboard.getOrigin(), extent, to);
-        if (transform != null) {
-            copy.setTransform(transform);
-        }
+        copy.setTransform(transform);
         copy.setCopyBiomes(!(clipboard instanceof BlockArrayClipboard) || ((BlockArrayClipboard) clipboard).IMP.hasBiomes());
+
         if (extent instanceof EditSession) {
             EditSession editSession = (EditSession) extent;
             Mask sourceMask = editSession.getSourceMask();
@@ -180,15 +184,16 @@ public class Schematic {
                 editSession.setSourceMask(null);
             }
         }
+
         if (!pasteAir) {
             copy.setSourceMask(new ExistingBlockMask(clipboard));
         }
+
         Operations.completeBlindly(copy);
     }
 
     public void paste(Extent extent, Vector to, final boolean pasteAir) {
         Region region = clipboard.getRegion().clone();
-        final int maxY = extent.getMaximumPoint().getBlockY();
         final Vector bot = clipboard.getMinimumPoint();
         final Vector origin = clipboard.getOrigin();
 
@@ -239,29 +244,36 @@ public class Schematic {
             final int rely = to.getBlockY() - origin.getBlockY();
             final int relz = to.getBlockZ() - origin.getBlockZ();
             RegionVisitor visitor = new RegionVisitor(region, new RegionFunction() {
-                MutableBlockVector2D mpos2d_2 = new MutableBlockVector2D();
-                MutableBlockVector2D mpos2d = new MutableBlockVector2D();
+                final MutableBlockVector2D mpos2d_2 = new MutableBlockVector2D();
+                final MutableBlockVector2D mpos2d = new MutableBlockVector2D();
+
                 {
                     mpos2d.setComponents(Integer.MIN_VALUE, Integer.MIN_VALUE);
                 }
+
                 @Override
                 public boolean apply(Vector mutable) throws WorldEditException {
                     BaseBlock block = clipboard.getBlock(mutable);
                     int xx = mutable.getBlockX() + relx;
                     int zz = mutable.getBlockZ() + relz;
+
                     if (copyBiomes && xx != mpos2d.getBlockX() && zz != mpos2d.getBlockZ()) {
                         mpos2d.setComponents(xx, zz);
                         extent.setBiome(mpos2d, clipboard.getBiome(mpos2d_2.setComponents(mutable.getBlockX(), mutable.getBlockZ())));
                     }
+
                     if (!pasteAir && block.getId() == 0) {
                         return false;
                     }
+
                     extent.setBlock(xx, mutable.getBlockY() + rely, zz, block);
                     return false;
                 }
             }, (HasFaweQueue) (null));
+
             Operations.completeBlindly(visitor);
         }
+
         // Entity offset is the paste location subtract the clipboard origin (entity's location is already relative to the world origin)
         final int entityOffsetX = to.getBlockX() - origin.getBlockX();
         final int entityOffsetY = to.getBlockY() - origin.getBlockY();

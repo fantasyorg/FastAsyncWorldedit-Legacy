@@ -221,11 +221,9 @@ public class AbstractDelegateExtent implements LightingExtent {
             return new OperationQueue(ours, other);
         } else if (ours != null) {
             return ours;
-        } else if (other != null) {
-            return other;
-        } else {
-            return null;
         }
+
+        return other;
     }
 
     public static Class<?> inject() {

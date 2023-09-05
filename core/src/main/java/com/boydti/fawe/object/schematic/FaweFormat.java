@@ -84,7 +84,7 @@ public class FaweFormat implements ClipboardReader, ClipboardWriter {
         int minZ = in.readInt();
 
         Vector min = new Vector(minX, minY, minZ);
-        CuboidRegion region = new CuboidRegion(min, min.add(width, height, length));
+        CuboidRegion region = new CuboidRegion(min, min.add(width, height, length).subtract(Vector.ONE));
 
         BlockArrayClipboard clipboard = new BlockArrayClipboard(region, clipboardId);
         clipboard.setOrigin(new Vector(ox, oy, oz));

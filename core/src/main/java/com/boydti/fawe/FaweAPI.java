@@ -634,9 +634,6 @@ public class FaweAPI {
      */
     @Deprecated
     public static EditSession getNewEditSession(@Nonnull FawePlayer player) {
-        if (player == null) {
-            throw new IllegalArgumentException("Player may not be null");
-        }
         return player.getNewEditSession();
     }
 
