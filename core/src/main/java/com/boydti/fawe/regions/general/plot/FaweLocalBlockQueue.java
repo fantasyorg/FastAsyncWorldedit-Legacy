@@ -12,6 +12,7 @@ import com.sk89q.worldedit.world.World;
 import com.sk89q.worldedit.world.biome.BaseBiome;
 import com.sk89q.worldedit.world.biome.Biomes;
 import com.sk89q.worldedit.world.registry.BiomeRegistry;
+
 import java.util.List;
 
 public class FaweLocalBlockQueue extends LocalBlockQueue {

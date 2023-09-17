@@ -26,6 +26,15 @@ import com.sk89q.jnbt.Tag;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.adapter.BukkitImplAdapter;
 import com.sk89q.worldedit.world.biome.BaseBiome;
+import org.bukkit.*;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.event.world.ChunkUnloadEvent;
+import org.bukkit.event.world.WorldInitEvent;
+import org.bukkit.plugin.Plugin;
+
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -35,18 +44,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.world.ChunkLoadEvent;
-import org.bukkit.event.world.ChunkUnloadEvent;
-import org.bukkit.event.world.WorldInitEvent;
-import org.bukkit.plugin.Plugin;
 
 public abstract class BukkitQueue_0<CHUNK, CHUNKSECTIONS, SECTION> extends NMSMappedFaweQueue<World, CHUNK, CHUNKSECTIONS, SECTION> implements Listener {
 
@@ -213,16 +210,20 @@ public abstract class BukkitQueue_0<CHUNK, CHUNKSECTIONS, SECTION> extends NMSMa
     }
 
     @Override
-    public void setFullbright(CHUNKSECTIONS sections) {}
+    public void setFullbright(CHUNKSECTIONS sections) {
+    }
 
     @Override
-    public void relight(int x, int y, int z) {}
+    public void relight(int x, int y, int z) {
+    }
 
     @Override
-    public void relightBlock(int x, int y, int z) {}
+    public void relightBlock(int x, int y, int z) {
+    }
 
     @Override
-    public void relightSky(int x, int y, int z) {}
+    public void relightSky(int x, int y, int z) {
+    }
 
     @Override
     public boolean removeSectionLighting(SECTION sections, int layer, boolean hasSky) {
@@ -336,10 +337,12 @@ public abstract class BukkitQueue_0<CHUNK, CHUNKSECTIONS, SECTION> extends NMSMa
     }
 
     @Override
-    public void sendChunk(int x, int z, int bitMask) {}
+    public void sendChunk(int x, int z, int bitMask) {
+    }
 
     @Override
-    public void refreshChunk(FaweChunk fs) {}
+    public void refreshChunk(FaweChunk fs) {
+    }
 
     @Override
     public boolean regenerateChunk(World world, int x, int z, BaseBiome biome, Long seed) {
@@ -365,17 +368,20 @@ public abstract class BukkitQueue_0<CHUNK, CHUNKSECTIONS, SECTION> extends NMSMa
     private static Field fieldTimingsEnabled;
     private static Field fieldAsyncCatcherEnabled;
     private static Method methodCheck;
+
     static {
         try {
             fieldAsyncCatcherEnabled = Class.forName("org.spigotmc.AsyncCatcher").getField("enabled");
             fieldAsyncCatcherEnabled.setAccessible(true);
-        } catch (Throwable ignore) {}
+        } catch (Throwable ignore) {
+        }
         try {
             fieldTimingsEnabled = Class.forName("co.aikar.timings.Timings").getDeclaredField("timingsEnabled");
             fieldTimingsEnabled.setAccessible(true);
             methodCheck = Class.forName("co.aikar.timings.TimingsManager").getDeclaredMethod("recheckEnabled");
             methodCheck.setAccessible(true);
-        } catch (Throwable ignore){}
+        } catch (Throwable ignore) {
+        }
     }
 
     @Override

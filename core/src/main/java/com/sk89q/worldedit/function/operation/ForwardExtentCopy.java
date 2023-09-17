@@ -48,9 +48,9 @@ import com.sk89q.worldedit.math.transform.AffineTransform;
 import com.sk89q.worldedit.math.transform.Identity;
 import com.sk89q.worldedit.math.transform.Transform;
 import com.sk89q.worldedit.regions.Region;
+
 import java.util.ArrayList;
 import java.util.List;
-
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -330,8 +330,7 @@ public class ForwardExtentCopy implements Operation {
                     };
                 }
                 copy = new CombinedBlockCopy(source, finalDest, copySrcFunc);
-            }
-            else {
+            } else {
                 copy = new SimpleBlockCopy(source, finalDest);
             }
             if (this.filterFunction != null) {

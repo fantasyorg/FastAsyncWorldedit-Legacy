@@ -10,6 +10,7 @@ import com.sk89q.worldedit.entity.Entity;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.util.Location;
 import com.sk89q.worldedit.world.biome.BaseBiome;
+
 import javax.annotation.Nullable;
 
 public class ScaleTransform extends ResettableExtent {

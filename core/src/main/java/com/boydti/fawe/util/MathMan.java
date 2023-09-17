@@ -32,6 +32,7 @@ public class MathMan {
 
     /**
      * Optimized for i elem 0,65536 (characters)
+     *
      * @param i
      * @return square root
      */
@@ -50,7 +51,7 @@ public class MathMan {
         return ANGLES[(int) (paramFloat * 10430.378F + 16384.0F) & 0xFFFF];
     }
 
-    public static int log2nlz( int bits ) {
+    public static int log2nlz(int bits) {
         return Integer.SIZE - Integer.numberOfLeadingZeros(bits);
     }
 

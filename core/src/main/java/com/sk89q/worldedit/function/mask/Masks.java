@@ -1,13 +1,9 @@
 package com.sk89q.worldedit.function.mask;
 
-import com.sk89q.worldedit.EditSession;
-import com.sk89q.worldedit.LocalPlayer;
-import com.sk89q.worldedit.LocalSession;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.Vector2D;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.session.request.Request;
-import javax.annotation.Nullable;
 
+import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

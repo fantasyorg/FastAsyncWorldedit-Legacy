@@ -1,6 +1,5 @@
 package com.boydti.fawe.bukkit.v1_10;
 
-import com.boydti.fawe.Fawe;
 import com.boydti.fawe.FaweCache;
 import com.boydti.fawe.bukkit.BukkitPlayer;
 import com.boydti.fawe.bukkit.v0.BukkitQueue_0;
@@ -21,52 +20,7 @@ import com.sk89q.jnbt.Tag;
 import com.sk89q.worldedit.world.biome.BaseBiome;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.atomic.LongAdder;
-import net.minecraft.server.v1_10_R1.BiomeBase;
-import net.minecraft.server.v1_10_R1.BiomeCache;
-import net.minecraft.server.v1_10_R1.Block;
-import net.minecraft.server.v1_10_R1.BlockPosition;
-import net.minecraft.server.v1_10_R1.ChunkProviderGenerate;
-import net.minecraft.server.v1_10_R1.ChunkProviderServer;
-import net.minecraft.server.v1_10_R1.ChunkSection;
-import net.minecraft.server.v1_10_R1.DataPaletteBlock;
-import net.minecraft.server.v1_10_R1.Entity;
-import net.minecraft.server.v1_10_R1.EntityPlayer;
-import net.minecraft.server.v1_10_R1.EntityTracker;
-import net.minecraft.server.v1_10_R1.EntityTypes;
-import net.minecraft.server.v1_10_R1.EnumDifficulty;
-import net.minecraft.server.v1_10_R1.EnumGamemode;
-import net.minecraft.server.v1_10_R1.EnumSkyBlock;
-import net.minecraft.server.v1_10_R1.IBlockData;
-import net.minecraft.server.v1_10_R1.IDataManager;
-import net.minecraft.server.v1_10_R1.MinecraftServer;
-import net.minecraft.server.v1_10_R1.NBTTagCompound;
-import net.minecraft.server.v1_10_R1.NibbleArray;
-import net.minecraft.server.v1_10_R1.PacketDataSerializer;
-import net.minecraft.server.v1_10_R1.PacketPlayOutMapChunk;
-import net.minecraft.server.v1_10_R1.PacketPlayOutMultiBlockChange;
-import net.minecraft.server.v1_10_R1.PlayerChunk;
-import net.minecraft.server.v1_10_R1.PlayerChunkMap;
-import net.minecraft.server.v1_10_R1.ServerNBTManager;
-import net.minecraft.server.v1_10_R1.TileEntity;
-import net.minecraft.server.v1_10_R1.WorldChunkManager;
-import net.minecraft.server.v1_10_R1.WorldData;
-import net.minecraft.server.v1_10_R1.WorldManager;
-import net.minecraft.server.v1_10_R1.WorldServer;
-import net.minecraft.server.v1_10_R1.WorldSettings;
-import net.minecraft.server.v1_10_R1.WorldType;
+import net.minecraft.server.v1_10_R1.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
@@ -79,6 +33,14 @@ import org.bukkit.craftbukkit.v1_10_R1.entity.CraftPlayer;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.concurrent.atomic.LongAdder;
 
 public class BukkitQueue_1_10 extends BukkitQueue_0<net.minecraft.server.v1_10_R1.Chunk, ChunkSection[], ChunkSection> {
 
@@ -122,8 +84,8 @@ public class BukkitQueue_1_10 extends BukkitQueue_0<net.minecraft.server.v1_10_R
             fieldBiomeCache.setAccessible(true);
             fieldBiomes2 = WorldChunkManager.class.getDeclaredField("d");
             fieldBiomes2.setAccessible(true);
-            fieldGenLayer1 = WorldChunkManager.class.getDeclaredField("a") ;
-            fieldGenLayer2 = WorldChunkManager.class.getDeclaredField("b") ;
+            fieldGenLayer1 = WorldChunkManager.class.getDeclaredField("a");
+            fieldGenLayer2 = WorldChunkManager.class.getDeclaredField("b");
             fieldGenLayer1.setAccessible(true);
             fieldGenLayer2.setAccessible(true);
 
@@ -145,7 +107,8 @@ public class BukkitQueue_1_10 extends BukkitQueue_0<net.minecraft.server.v1_10_R
             for (int i = 0; i < IBD_CACHE.length; i++) {
                 try {
                     IBD_CACHE[i] = Block.getById(i >> 4).fromLegacyData(i & 0xF);
-                } catch (Throwable ignore) {}
+                } catch (Throwable ignore) {
+                }
             }
         } catch (Throwable e) {
             e.printStackTrace();
@@ -337,7 +300,7 @@ public class BukkitQueue_1_10 extends BukkitQueue_0<net.minecraft.server.v1_10_R
             worldSettings = null;
         }
         worlddata.checkName(name);
-        final WorldServer internal = (WorldServer)new WorldServer(console, sdm, worlddata, dimension, console.methodProfiler, creator.environment(), generator).b();
+        final WorldServer internal = (WorldServer) new WorldServer(console, sdm, worlddata, dimension, console.methodProfiler, creator.environment(), generator).b();
         startSet(true); // Temporarily allow async chunk load since the world isn't added yet
         if (worldSettings != null) {
             internal.a(worldSettings);
@@ -574,7 +537,8 @@ public class BukkitQueue_1_10 extends BukkitQueue_0<net.minecraft.server.v1_10_R
             });
             packet.a(buffer);
             for (int i = 0; i < players.length; i++) {
-                if (watchingArr[i]) ((CraftPlayer) ((BukkitPlayer) players[i]).parent).getHandle().playerConnection.sendPacket(packet);
+                if (watchingArr[i])
+                    ((CraftPlayer) ((BukkitPlayer) players[i]).parent).getHandle().playerConnection.sendPacket(packet);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -644,7 +608,8 @@ public class BukkitQueue_1_10 extends BukkitQueue_0<net.minecraft.server.v1_10_R
                     return true;
                 }
             }
-        } catch (Throwable ignore) {}
+        } catch (Throwable ignore) {
+        }
         return false;
     }
 

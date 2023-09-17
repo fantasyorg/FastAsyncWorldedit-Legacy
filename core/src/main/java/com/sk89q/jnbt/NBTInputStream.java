@@ -21,11 +21,8 @@ package com.sk89q.jnbt;
 
 import com.boydti.fawe.jnbt.NBTStreamer;
 import com.boydti.fawe.object.RunnableVal2;
-import java.io.Closeable;
-import java.io.DataInput;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

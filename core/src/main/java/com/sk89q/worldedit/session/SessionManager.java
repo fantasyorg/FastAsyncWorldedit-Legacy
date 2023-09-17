@@ -32,6 +32,8 @@ import com.sk89q.worldedit.session.storage.SessionStore;
 import com.sk89q.worldedit.session.storage.VoidStore;
 import com.sk89q.worldedit.util.concurrency.EvenMoreExecutors;
 import com.sk89q.worldedit.util.eventbus.Subscribe;
+
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.Reference;
@@ -43,8 +45,6 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Nullable;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

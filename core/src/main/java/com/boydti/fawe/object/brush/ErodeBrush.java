@@ -11,6 +11,7 @@ import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.command.tool.brush.Brush;
 import com.sk89q.worldedit.function.pattern.Pattern;
+
 import java.util.Arrays;
 
 public class ErodeBrush implements Brush {

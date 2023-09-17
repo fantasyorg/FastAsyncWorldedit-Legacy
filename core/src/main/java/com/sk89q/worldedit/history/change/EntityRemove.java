@@ -25,7 +25,6 @@ import com.sk89q.worldedit.entity.Entity;
 import com.sk89q.worldedit.history.UndoContext;
 import com.sk89q.worldedit.util.Location;
 
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**

@@ -14,11 +14,12 @@ package net.jpountz.lz4;
  * limitations under the License.
  */
 
+import net.jpountz.util.SafeUtils;
+
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.zip.Checksum;
-import net.jpountz.util.SafeUtils;
 
 /**
  * Streaming LZ4.

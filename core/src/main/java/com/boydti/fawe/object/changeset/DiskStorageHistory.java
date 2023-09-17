@@ -15,12 +15,8 @@ import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.world.World;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import java.io.DataOutput;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+
+import java.io.*;
 import java.util.Map;
 import java.util.UUID;
 
@@ -43,10 +39,10 @@ public class DiskStorageHistory extends FaweStreamChangeSet {
 
     /*
      * Block data
-     * 
+     *
      * [header]
      * {int origin x, int origin z}
-     * 
+     *
      * [contents]...
      * { short rel x, short rel z, unsigned byte y, short combinedFrom, short combinedTo }
      */

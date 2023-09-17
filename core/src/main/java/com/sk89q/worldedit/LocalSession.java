@@ -36,7 +36,6 @@ import com.boydti.fawe.object.extent.ResettableExtent;
 import com.boydti.fawe.util.*;
 import com.boydti.fawe.util.cui.CUI;
 import com.boydti.fawe.wrappers.WorldWrapper;
-import com.intellectualcrafters.plot.object.PlotArea;
 import com.sk89q.jchronic.Chronic;
 import com.sk89q.jchronic.Options;
 import com.sk89q.jchronic.utils.Span;
@@ -61,12 +60,12 @@ import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.session.request.Request;
 import com.sk89q.worldedit.world.World;
 import com.sk89q.worldedit.world.snapshot.Snapshot;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -807,7 +806,7 @@ public class LocalSession implements TextureHolder {
             for (ClipboardHolder holder : toAppend.getHolders()) {
                 multi.add(holder);
             }
-        } else  {
+        } else {
             multi = toAppend;
             if (existing != null) {
                 multi.add(existing);
@@ -1438,6 +1437,7 @@ public class LocalSession implements TextureHolder {
 
     /**
      * Get the TextureUtil currently being used
+     *
      * @return
      */
     @Override

@@ -9,6 +9,7 @@ import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.extension.input.InputParseException;
 import com.sk89q.worldedit.function.pattern.Pattern;
 import com.sk89q.worldedit.function.pattern.RandomPattern;
+
 import java.util.ArrayList;
 import java.util.List;
 

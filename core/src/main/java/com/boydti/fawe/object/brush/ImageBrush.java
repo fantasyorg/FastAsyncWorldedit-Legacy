@@ -11,12 +11,12 @@ import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.command.tool.brush.Brush;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.function.mask.Mask;
-import com.sk89q.worldedit.function.mask.SolidBlockMask;
 import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.function.pattern.Pattern;
 import com.sk89q.worldedit.function.visitor.RecursiveVisitor;
 import com.sk89q.worldedit.math.transform.AffineTransform;
 import com.sk89q.worldedit.util.Location;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Arrays;
@@ -85,6 +85,7 @@ public class ImageBrush implements Brush {
 
         RecursiveVisitor visitor = new RecursiveVisitor(new Mask() {
             private final Vector mutable = new Vector();
+
             @Override
             public boolean test(Vector vector) {
                 if (solid.test(vector)) {

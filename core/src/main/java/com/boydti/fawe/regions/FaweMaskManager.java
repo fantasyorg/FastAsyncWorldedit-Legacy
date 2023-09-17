@@ -8,9 +8,7 @@ public abstract class FaweMaskManager<T> {
 
     public enum MaskType {
         OWNER,
-        MEMBER
-
-        ;
+        MEMBER;
 
         public static MaskType getDefaultMaskType() {
             try {

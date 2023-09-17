@@ -25,8 +25,9 @@ import com.sk89q.worldedit.LocalPlayer;
 import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.command.UtilityCommands;
-import java.io.Serializable;
+
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * Tests whether a given vector meets a criteria.

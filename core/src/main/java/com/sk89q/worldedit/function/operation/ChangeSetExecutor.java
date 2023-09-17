@@ -25,9 +25,9 @@ import com.sk89q.worldedit.extent.inventory.BlockBag;
 import com.sk89q.worldedit.history.UndoContext;
 import com.sk89q.worldedit.history.change.Change;
 import com.sk89q.worldedit.history.changeset.ChangeSet;
+
 import java.util.Iterator;
 import java.util.List;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

@@ -23,11 +23,8 @@ import com.sk89q.worldedit.internal.expression.runtime.EvaluationException;
 import com.sk89q.worldedit.util.command.CommandCallable;
 import com.sk89q.worldedit.util.command.Dispatcher;
 import com.sk89q.worldedit.util.command.ProcessedCallable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -228,6 +225,7 @@ public class BrushSettings {
 
     /**
      * Set the world the brush is being used in
+     *
      * @param world
      * @return true if the world differs from the last used world
      */

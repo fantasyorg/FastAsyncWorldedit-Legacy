@@ -2,6 +2,7 @@ package com.boydti.fawe.object.extent;
 
 import com.sk89q.worldedit.extent.AbstractDelegateExtent;
 import com.sk89q.worldedit.extent.Extent;
+
 import java.util.Arrays;
 
 public class ExtentHeightCacher extends AbstractDelegateExtent {

@@ -30,18 +30,19 @@ import com.sk89q.worldedit.entity.BaseEntity;
 import com.sk89q.worldedit.extent.inventory.BlockBag;
 import com.sk89q.worldedit.internal.cui.CUIEvent;
 import com.sk89q.worldedit.session.SessionKey;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import javax.annotation.Nullable;
-import org.bukkit.*;
 import org.bukkit.Location;
+import org.bukkit.*;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.material.Dye;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class BukkitPlayer extends LocalPlayer {
 

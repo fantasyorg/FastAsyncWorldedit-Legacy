@@ -11,6 +11,7 @@ import com.sk89q.worldedit.command.tool.brush.Brush;
 import com.sk89q.worldedit.function.pattern.Pattern;
 import com.sk89q.worldedit.math.interpolation.KochanekBartelsInterpolation;
 import com.sk89q.worldedit.math.interpolation.Node;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,7 +2,6 @@ package com.boydti.fawe.bukkit.wrapper;
 
 import com.boydti.fawe.FaweCache;
 import com.sk89q.jnbt.CompoundTag;
-import java.util.List;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,6 +11,8 @@ import org.bukkit.block.BlockState;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
+
+import java.util.List;
 
 public class AsyncBlockState implements BlockState {
 

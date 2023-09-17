@@ -39,6 +39,8 @@ import com.sk89q.worldedit.function.pattern.Pattern;
 import com.sk89q.worldedit.internal.expression.Expression;
 import com.sk89q.worldedit.session.request.Request;
 import com.sk89q.worldedit.util.Location;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Type;
@@ -46,8 +48,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import javax.annotation.Nullable;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

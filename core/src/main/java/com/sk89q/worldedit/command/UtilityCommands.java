@@ -37,8 +37,8 @@ import com.boydti.fawe.util.chat.UsageMessage;
 import com.boydti.fawe.util.gui.FormBuilder;
 import com.boydti.fawe.util.image.ImageUtil;
 import com.sk89q.minecraft.util.commands.*;
-import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.command.util.CreatureButcher;
 import com.sk89q.worldedit.command.util.EntityRemover;
@@ -81,12 +81,11 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.nio.file.Files;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
-
 
 import static com.sk89q.minecraft.util.commands.Logging.LogMode.PLACEMENT;
 
@@ -191,7 +190,8 @@ public class UtilityCommands extends MethodCommands {
                 }
                 try {
                     String name = file.getAbsolutePath().substring(sub);
-                    if (name.startsWith(File.separator)) name = name.replaceFirst(java.util.regex.Pattern.quote(File.separator), "");
+                    if (name.startsWith(File.separator))
+                        name = name.replaceFirst(java.util.regex.Pattern.quote(File.separator), "");
                     BufferedImage img = MainUtil.readImage(file);
                     BufferedImage minImg = ImageUtil.getScaledInstance(img, min, min, RenderingHints.VALUE_INTERPOLATION_BILINEAR, true);
                     BufferedImage maxImg = max == -1 ? img : ImageUtil.getScaledInstance(img, max, max, RenderingHints.VALUE_INTERPOLATION_BILINEAR, true);
@@ -816,8 +816,7 @@ public class UtilityCommands extends MethodCommands {
                                 }
                             }
                             dirFilter = newDirFilter;
-                        }
-                        else {
+                        } else {
                             filters.add(arg);
                         }
                         break;
@@ -834,7 +833,8 @@ public class UtilityCommands extends MethodCommands {
                     UUID uuid = UUID.fromString(f.getName());
                     return false;
                 }
-            } catch (IllegalArgumentException exception) {}
+            } catch (IllegalArgumentException exception) {
+            }
             return true;
         };
 
@@ -879,7 +879,8 @@ public class UtilityCommands extends MethodCommands {
                                 UUID uuid = UUID.fromString(f.getName());
                                 return;
                             }
-                        } catch (IllegalArgumentException exception) {}
+                        } catch (IllegalArgumentException exception) {
+                        }
                         super.accept(f);
                     }
                 };
@@ -1009,7 +1010,6 @@ public class UtilityCommands extends MethodCommands {
                     Description cmdDesc = callable.getDescription();
 
 
-
                     List<Parameter> params = cmdDesc.getParameters();
                     String[] suggested = new String[params.size()];
                     if (cmdDesc.getUsage() != null) {
@@ -1022,7 +1022,7 @@ public class UtilityCommands extends MethodCommands {
                             }
                         }
                     }
-                    for (int i = 0 ; i < params.size(); i++) {
+                    for (int i = 0; i < params.size(); i++) {
                         String[] def = params.get(i).getDefaultValue();
                         if (def != null && def.length != 0) {
                             suggested[i] = def[0];
@@ -1067,7 +1067,7 @@ public class UtilityCommands extends MethodCommands {
                                 if (suggestedRange != null) {
                                     min = suggestedRange.min();
                                     max = suggestedRange.max();
-                                } else  if (name.equalsIgnoreCase("radius") || name.equalsIgnoreCase("size")) {
+                                } else if (name.equalsIgnoreCase("radius") || name.equalsIgnoreCase("size")) {
                                     max = WorldEdit.getInstance().getConfiguration().maxBrushRadius;
                                 }
                             }

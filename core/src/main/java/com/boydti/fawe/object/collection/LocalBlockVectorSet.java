@@ -4,6 +4,7 @@ import com.boydti.fawe.util.MathMan;
 import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.MutableBlockVector;
 import com.sk89q.worldedit.Vector;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;

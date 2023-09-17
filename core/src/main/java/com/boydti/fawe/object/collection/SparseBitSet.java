@@ -39,12 +39,13 @@ import java.io.Serializable;
  * <p>
  * A <code>SparseBitSet</code> is not safe for multithreaded use without
  * external synchronization.
- * @see <a href="https://github.com/brettwooldridge/SparseBitSet">source</a>
+ *
  * @author Bruce K. Haddon
  * @author Arthur van Hoff
  * @author Michael McCloskey
  * @author Martin Buchholz
  * @version 1.0, 2009-03-17
+ * @see <a href="https://github.com/brettwooldridge/SparseBitSet">source</a>
  * @since 1.6
  */
 public final class SparseBitSet implements Cloneable, Serializable {

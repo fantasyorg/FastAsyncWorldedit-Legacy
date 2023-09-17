@@ -22,13 +22,8 @@ package com.sk89q.worldedit.internal.expression;
 import com.sk89q.worldedit.internal.expression.lexer.Lexer;
 import com.sk89q.worldedit.internal.expression.lexer.tokens.Token;
 import com.sk89q.worldedit.internal.expression.parser.Parser;
-import com.sk89q.worldedit.internal.expression.runtime.Constant;
-import com.sk89q.worldedit.internal.expression.runtime.EvaluationException;
-import com.sk89q.worldedit.internal.expression.runtime.ExpressionEnvironment;
-import com.sk89q.worldedit.internal.expression.runtime.Functions;
-import com.sk89q.worldedit.internal.expression.runtime.RValue;
-import com.sk89q.worldedit.internal.expression.runtime.ReturnException;
-import com.sk89q.worldedit.internal.expression.runtime.Variable;
+import com.sk89q.worldedit.internal.expression.runtime.*;
+
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.List;

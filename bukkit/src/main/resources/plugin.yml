@@ -2,20 +2,20 @@ name: FastAsyncWorldEdit
 main: com.boydti.fawe.bukkit.BukkitMain
 version: ${version}
 description: Fast Async WorldEdit plugin
-authors: [Empire92]
-loadbefore: [WorldEdit,AsyncWorldEdit,AsyncWorldEditInjector,WorldGuard]
+authors: [ Empire92 ]
+loadbefore: [ WorldEdit,AsyncWorldEdit,AsyncWorldEditInjector,WorldGuard ]
 load: STARTUP
 database: false
 #softdepend: [WorldGuard, PlotSquared, MCore, Factions, GriefPrevention, Residence, Towny, PlotMe, PreciousStones]
 commands:
   fcancel:
     description: (FAWE) Cancel your edit
-    aliases: [fawecancel,/fcancel,/cancel,/fawecancel]
+    aliases: [ fawecancel,/fcancel,/cancel,/fawecancel ]
 permissions:
   fawe.plotsquared:
-      default: true
-      children:
-        fawe.plotsquared.trusted: true
+    default: true
+    children:
+      fawe.plotsquared.trusted: true
   fawe.plotme:
     default: true
   fawe.bypass.regions:

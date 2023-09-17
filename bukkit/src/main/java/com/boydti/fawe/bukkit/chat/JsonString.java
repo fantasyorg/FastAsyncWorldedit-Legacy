@@ -1,10 +1,11 @@
 package com.boydti.fawe.bukkit.chat;
 
 import com.google.gson.stream.JsonWriter;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
 /**
  * Represents a JSON string value.

@@ -5,14 +5,7 @@ import com.boydti.fawe.object.FaweInputStream;
 import com.boydti.fawe.object.FaweOutputStream;
 import com.boydti.fawe.util.MainUtil;
 import com.boydti.fawe.util.ReflectionUtils;
-import com.sk89q.jnbt.CompoundTag;
-import com.sk89q.jnbt.DoubleTag;
-import com.sk89q.jnbt.FloatTag;
-import com.sk89q.jnbt.IntTag;
-import com.sk89q.jnbt.ListTag;
-import com.sk89q.jnbt.NamedTag;
-import com.sk89q.jnbt.StringTag;
-import com.sk89q.jnbt.Tag;
+import com.sk89q.jnbt.*;
 import com.sk89q.worldedit.MutableBlockVector;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEditException;
@@ -30,11 +23,7 @@ import com.sk89q.worldedit.world.registry.WorldData;
 import com.sk89q.worldedit.world.storage.NBTConversions;
 
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class FaweFormat implements ClipboardReader, ClipboardWriter {
     private static final int MAX_SIZE = Short.MAX_VALUE - Short.MIN_VALUE;

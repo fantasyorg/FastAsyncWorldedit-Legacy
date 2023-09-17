@@ -11,16 +11,11 @@ import com.boydti.fawe.util.StringMan;
 import com.boydti.fawe.util.chat.Message;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public enum BBC {
 
@@ -336,10 +331,12 @@ public enum BBC {
     TIP_REGEN_1("Tip: Use a seed with /regen [biome] [seed]", "Tips"),
 
     TIP_BIOME_PATTERN("Tip: The &c#biome[forest]&7 pattern can be used in any command", "Tips"),
-    TIP_BIOME_MASK("Tip: Restrict to a biome with the `$jungle` mask", "Tips"),;
+    TIP_BIOME_MASK("Tip: Restrict to a biome with the `$jungle` mask", "Tips"),
+    ;
 
 
     private static final HashMap<String, String> replacements = new HashMap<>();
+
     static {
         for (final char letter : "1234567890abcdefklmnor".toCharArray()) {
             replacements.put("&" + letter, "\u00a7" + letter);
@@ -348,6 +345,7 @@ public enum BBC {
         replacements.put("\\n", "\n");
         replacements.put("&-", "\n");
     }
+
     /**
      * Translated
      */
@@ -657,7 +655,7 @@ public enum BBC {
     }
 
     private static Object[] append(StringBuilder builder, Map<String, Object> obj, String color, Map<String, Boolean> properties) {
-        Object[] style = new Object[] { color, properties };
+        Object[] style = new Object[]{color, properties};
         for (Map.Entry<String, Object> entry : obj.entrySet()) {
             switch (entry.getKey()) {
                 case "text":
@@ -707,7 +705,8 @@ public enum BBC {
     public static String jsonToString(String text) {
         Gson gson = new Gson();
         StringBuilder builder = new StringBuilder();
-        Map<String, Object> obj = gson.fromJson(text, new TypeToken<Map<String, Object>>() {}.getType());
+        Map<String, Object> obj = gson.fromJson(text, new TypeToken<Map<String, Object>>() {
+        }.getType());
         HashMap<String, Boolean> properties = new HashMap<>();
         properties.put("bold", false);
         properties.put("italic", false);

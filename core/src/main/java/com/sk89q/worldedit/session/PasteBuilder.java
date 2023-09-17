@@ -34,7 +34,6 @@ import com.sk89q.worldedit.function.operation.Operation;
 import com.sk89q.worldedit.math.transform.Transform;
 import com.sk89q.worldedit.world.registry.WorldData;
 
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**

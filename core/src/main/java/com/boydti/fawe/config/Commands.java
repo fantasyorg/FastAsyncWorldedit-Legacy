@@ -3,14 +3,11 @@ package com.boydti.fawe.config;
 import com.boydti.fawe.configuration.ConfigurationSection;
 import com.boydti.fawe.configuration.file.YamlConfiguration;
 import com.sk89q.minecraft.util.commands.Command;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Commands {
 
@@ -36,34 +33,42 @@ public class Commands {
             public Class<? extends Annotation> annotationType() {
                 return Command.class;
             }
+
             @Override
             public String[] aliases() {
                 return aliases;
             }
+
             @Override
             public String usage() {
                 return usage;
             }
+
             @Override
             public String desc() {
                 return desc;
             }
+
             @Override
             public int min() {
                 return min;
             }
+
             @Override
             public int max() {
                 return max;
             }
+
             @Override
             public String flags() {
                 return flags;
             }
+
             @Override
             public String help() {
                 return help;
             }
+
             @Override
             public boolean anyFlags() {
                 return !(flags.isEmpty() || flags.matches("[a-z]+"));

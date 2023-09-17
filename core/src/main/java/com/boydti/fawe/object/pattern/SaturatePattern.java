@@ -8,7 +8,8 @@ import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.function.pattern.AbstractPattern;
-import java.awt.Color;
+
+import java.awt.*;
 import java.io.IOException;
 
 public class SaturatePattern extends AbstractPattern {

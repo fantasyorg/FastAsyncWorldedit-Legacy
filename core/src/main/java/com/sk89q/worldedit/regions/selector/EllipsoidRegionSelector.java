@@ -33,10 +33,10 @@ import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.regions.RegionSelector;
 import com.sk89q.worldedit.regions.selector.limit.SelectorLimits;
 import com.sk89q.worldedit.world.World;
+
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Nullable;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -95,7 +95,7 @@ public class EllipsoidRegionSelector extends com.sk89q.worldedit.regions.Ellipso
     /**
      * Create a new selector.
      *
-     * @param world the world
+     * @param world  the world
      * @param center the center
      * @param radius the radius
      */

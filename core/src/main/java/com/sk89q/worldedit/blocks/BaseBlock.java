@@ -20,11 +20,7 @@
 package com.sk89q.worldedit.blocks;
 
 import com.boydti.fawe.FaweCache;
-import com.sk89q.jnbt.CompoundTag;
-import com.sk89q.jnbt.NBTInputStream;
-import com.sk89q.jnbt.NBTOutputStream;
-import com.sk89q.jnbt.StringTag;
-import com.sk89q.jnbt.Tag;
+import com.sk89q.jnbt.*;
 import com.sk89q.minecraft.util.commands.Link;
 import com.sk89q.worldedit.CuboidClipboard.FlipDirection;
 import com.sk89q.worldedit.Vector;
@@ -32,14 +28,14 @@ import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.function.mask.Mask;
 import com.sk89q.worldedit.function.pattern.Pattern;
-import com.sk89q.worldedit.world.registry.BundledBlockData;
 import com.sk89q.worldedit.world.registry.WorldData;
+
+import javax.annotation.Nullable;
 import java.io.DataInputStream;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collection;
-import javax.annotation.Nullable;
 
 /**
  * Represents a mutable "snapshot" of a block.

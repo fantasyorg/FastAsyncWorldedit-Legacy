@@ -31,7 +31,9 @@ import com.boydti.fawe.object.FaweCommand;
 import com.boydti.fawe.object.FawePlayer;
 import com.boydti.fawe.object.FaweQueue;
 import com.boydti.fawe.regions.FaweMaskManager;
-import com.boydti.fawe.util.*;
+import com.boydti.fawe.util.Jars;
+import com.boydti.fawe.util.MainUtil;
+import com.boydti.fawe.util.TaskManager;
 import com.boydti.fawe.util.cui.CUI;
 import com.boydti.fawe.util.image.ImageViewer;
 import com.sk89q.bukkit.util.FallbackRegistrationListener;
@@ -40,6 +42,16 @@ import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.bukkit.EditSessionBlockChangeDelegate;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.world.World;
+import org.bukkit.Bukkit;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
+import org.primesoft.blockshub.BlocksHubBukkit;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -50,18 +62,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
-
-import org.bukkit.Bukkit;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
-import org.primesoft.blockshub.BlocksHubBukkit;
 
 public class FaweBukkit implements IFawe, Listener {
 

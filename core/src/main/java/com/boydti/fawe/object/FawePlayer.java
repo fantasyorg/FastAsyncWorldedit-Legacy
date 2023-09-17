@@ -9,16 +9,16 @@ import com.boydti.fawe.object.brush.visualization.VirtualWorld;
 import com.boydti.fawe.object.clipboard.DiskOptimizedClipboard;
 import com.boydti.fawe.object.exception.FaweException;
 import com.boydti.fawe.object.task.SimpleAsyncNotifyQueue;
-import com.boydti.fawe.object.task.ThrowableSupplier;
 import com.boydti.fawe.object.task.ThrowableRunnable;
+import com.boydti.fawe.object.task.ThrowableSupplier;
 import com.boydti.fawe.regions.FaweMaskManager;
 import com.boydti.fawe.util.*;
 import com.boydti.fawe.wrappers.FakePlayer;
 import com.boydti.fawe.wrappers.LocationMaskedPlayerWrapper;
 import com.boydti.fawe.wrappers.PlayerWrapper;
 import com.sk89q.minecraft.util.commands.CommandContext;
-import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.command.tool.BrushTool;
 import com.sk89q.worldedit.command.tool.Tool;
 import com.sk89q.worldedit.entity.Player;
@@ -55,6 +55,7 @@ public abstract class FawePlayer<T> extends Metadatable {
 
     private static Class<?> playerProxyClass = null;
     private static Field fieldBasePlayer = null;
+
     static {
         try {
             playerProxyClass = Class.forName("com.sk89q.worldedit.extension.platform.PlayerProxy");
@@ -89,7 +90,7 @@ public abstract class FawePlayer<T> extends Metadatable {
         }
         if (obj instanceof Player) {
             Player actor = LocationMaskedPlayerWrapper.unwrap((Player) obj);
-            if ((fieldBasePlayer != null && playerProxyClass.isAssignableFrom(obj.getClass()))  ) {
+            if ((fieldBasePlayer != null && playerProxyClass.isAssignableFrom(obj.getClass()))) {
                 try {
                     Player player = (Player) fieldBasePlayer.get(actor);
                     FawePlayer<Object> result = wrap(player);
@@ -169,7 +170,8 @@ public abstract class FawePlayer<T> extends Metadatable {
                     }
                 } else world.clear();
             }
-        } catch (NoCapablePlatformException ignore) {}
+        } catch (NoCapablePlatformException ignore) {
+        }
         return cancelled;
     }
 
@@ -292,6 +294,7 @@ public abstract class FawePlayer<T> extends Metadatable {
 
     /**
      * Queue an action to run async
+     *
      * @param run
      */
     public void queueAction(final Runnable run) {
@@ -330,6 +333,7 @@ public abstract class FawePlayer<T> extends Metadatable {
 
     /**
      * Run a task either async, or on the current thread
+     *
      * @param ifFree
      * @param checkFree Whether to first check if a task is running
      * @param async
@@ -666,7 +670,8 @@ public abstract class FawePlayer<T> extends Metadatable {
                         ((BrushTool) tool).clear(getPlayer());
                     }
                 }
-            } catch (NoCapablePlatformException ignore) {}
+            } catch (NoCapablePlatformException ignore) {
+            }
         }
         Fawe.get().unregister(getName());
     }
@@ -685,6 +690,7 @@ public abstract class FawePlayer<T> extends Metadatable {
     /**
      * Get the World the player is editing in (may not match the world they are in)<br/>
      * - e.g. If they are editing a CFI world.<br/>
+     *
      * @return Editing world
      */
     public World getWorldForEditing() {

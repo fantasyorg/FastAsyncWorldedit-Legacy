@@ -17,7 +17,6 @@ package net.jpountz.lz4;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-
 import static net.jpountz.lz4.LZ4Constants.*;
 import static net.jpountz.util.ByteBufferUtils.*;
 

@@ -23,13 +23,13 @@ public class For extends Node {
         double ret = 0.0D;
         this.init.getValue();
 
-        for(; this.condition.getValue() > 0.0D; this.increment.getValue()) {
+        for (; this.condition.getValue() > 0.0D; this.increment.getValue()) {
 
-            if(iterations > 256) {
+            if (iterations > 256) {
                 throw new EvaluationException(this.getPosition(), "Loop exceeded 256 iterations.");
             }
 
-            if(Thread.currentThread().isInterrupted()){
+            if (Thread.currentThread().isInterrupted()) {
                 throw new EvaluationException(this.getPosition(), "Thread has been interrupted.");
             }
 
@@ -38,7 +38,7 @@ public class For extends Node {
             try {
                 ret = this.body.getValue();
             } catch (BreakException var5) {
-                if(!var5.doContinue) {
+                if (!var5.doContinue) {
                     return ret;
                 }
             }
@@ -57,7 +57,7 @@ public class For extends Node {
 
     public RValue optimize() throws EvaluationException {
         RValue newCondition = this.condition.optimize();
-        return (RValue)(newCondition instanceof Constant && newCondition.getValue() <= 0.0D?(new Sequence(this.getPosition(), new RValue[]{this.init, new Constant(this.getPosition(), 0.0D)})).optimize():new For(this.getPosition(), this.init.optimize(), newCondition, this.increment.optimize(), this.body.optimize()));
+        return (RValue) (newCondition instanceof Constant && newCondition.getValue() <= 0.0D ? (new Sequence(this.getPosition(), new RValue[]{this.init, new Constant(this.getPosition(), 0.0D)})).optimize() : new For(this.getPosition(), this.init.optimize(), newCondition, this.increment.optimize(), this.body.optimize()));
     }
 
     public RValue bindVariables(Expression expression, boolean preferLValue) throws ParserException {

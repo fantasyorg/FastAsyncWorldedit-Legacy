@@ -1,6 +1,7 @@
 package com.boydti.fawe.object.task;
 
 import com.boydti.fawe.util.TaskManager;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class AsyncNotifyQueue {

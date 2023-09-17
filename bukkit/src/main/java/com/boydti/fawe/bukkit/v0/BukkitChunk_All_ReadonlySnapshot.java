@@ -5,13 +5,10 @@ import com.boydti.fawe.object.FaweChunk;
 import com.boydti.fawe.util.MathMan;
 import com.sk89q.jnbt.CompoundTag;
 import com.sk89q.worldedit.bukkit.adapter.BukkitImplAdapter;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 import org.bukkit.ChunkSnapshot;
 import org.bukkit.block.Biome;
+
+import java.util.*;
 
 public class BukkitChunk_All_ReadonlySnapshot extends FaweChunk {
     private final ChunkSnapshot snapshot;

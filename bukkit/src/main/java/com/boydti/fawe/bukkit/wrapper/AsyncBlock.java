@@ -4,20 +4,17 @@ import com.boydti.fawe.FaweCache;
 import com.boydti.fawe.bukkit.wrapper.state.AsyncSign;
 import com.boydti.fawe.object.FaweQueue;
 import com.sk89q.worldedit.blocks.BlockID;
-import java.util.Collection;
-import java.util.List;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Biome;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.PistonMoveReaction;
+import org.bukkit.block.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
+
+import java.util.Collection;
+import java.util.List;
 
 public class AsyncBlock implements Block {
 
@@ -107,11 +104,11 @@ public class AsyncBlock implements Block {
 
     @Override
     public Location getLocation(Location loc) {
-        if(loc != null) {
+        if (loc != null) {
             loc.setWorld(this.getWorld());
-            loc.setX((double)this.x);
-            loc.setY((double)this.y);
-            loc.setZ((double)this.z);
+            loc.setX((double) this.x);
+            loc.setY((double) this.y);
+            loc.setZ((double) this.z);
         }
         return loc;
     }
@@ -159,9 +156,9 @@ public class AsyncBlock implements Block {
     @Override
     public BlockFace getFace(Block block) {
         BlockFace[] directions = BlockFace.values();
-        for(int i = 0; i < directions.length; ++i) {
+        for (int i = 0; i < directions.length; ++i) {
             BlockFace face = directions[i];
-            if(this.getX() + face.getModX() == block.getX() && this.getY() + face.getModY() == block.getY() && this.getZ() + face.getModZ() == block.getZ()) {
+            if (this.getX() + face.getModX() == block.getX() && this.getY() + face.getModY() == block.getY() && this.getZ() + face.getModZ() == block.getZ()) {
                 return face;
             }
         }

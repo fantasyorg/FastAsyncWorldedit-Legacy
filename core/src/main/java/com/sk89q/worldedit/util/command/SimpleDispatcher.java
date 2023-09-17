@@ -26,14 +26,8 @@ import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.minecraft.util.commands.CommandLocals;
 import com.sk89q.minecraft.util.commands.CommandPermissionsException;
 import com.sk89q.minecraft.util.commands.WrappedCommandException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
 
 /**
  * A simple implementation of {@link Dispatcher}.

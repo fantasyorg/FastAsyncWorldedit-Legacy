@@ -32,7 +32,6 @@ import com.boydti.fawe.logging.rollback.RollbackOptimizedHistory;
 import com.boydti.fawe.object.*;
 import com.boydti.fawe.object.brush.visualization.VirtualWorld;
 import com.boydti.fawe.object.changeset.*;
-import com.boydti.fawe.object.clipboard.ReadOnlyClipboard;
 import com.boydti.fawe.object.clipboard.WorldCopyClipboard;
 import com.boydti.fawe.object.collection.LocalBlockVectorSet;
 import com.boydti.fawe.object.exception.FaweException;
@@ -57,7 +56,6 @@ import com.sk89q.worldedit.extent.ChangeSetExtent;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.extent.MaskingExtent;
 import com.sk89q.worldedit.extent.clipboard.BlockArrayClipboard;
-import com.sk89q.worldedit.extent.clipboard.Clipboard;
 import com.sk89q.worldedit.extent.inventory.BlockBag;
 import com.sk89q.worldedit.extent.inventory.BlockBagExtent;
 import com.sk89q.worldedit.extent.world.SurvivalModeExtent;
@@ -98,16 +96,14 @@ import com.sk89q.worldedit.world.SimpleWorld;
 import com.sk89q.worldedit.world.World;
 import com.sk89q.worldedit.world.biome.BaseBiome;
 import com.sk89q.worldedit.world.registry.WorldData;
-import java.util.*;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
+import java.util.*;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.sk89q.worldedit.regions.Regions.asFlatRegion;
-import static com.sk89q.worldedit.regions.Regions.maximumBlockY;
-import static com.sk89q.worldedit.regions.Regions.minimumBlockY;
+import static com.sk89q.worldedit.regions.Regions.*;
 
 /**
  * An {@link Extent} that handles history, {@link BlockBag}s, change limits,
@@ -234,12 +230,12 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
             combineStages =
                     // If it's enabled in the settings
                     Settings.IMP.HISTORY.COMBINE_STAGES
-                    // If fast placement is disabled, it's slower to perform a copy on each chunk
-                    && this.limit.FAST_PLACEMENT
-                    // If the specific queue doesn't support it
-                    && queue.supports(FaweQueue.Capability.CHANGE_TASKS)
-                    // If the edit uses items from the inventory we can't use a delayed task
-                    && this.blockBag == null;
+                            // If fast placement is disabled, it's slower to perform a copy on each chunk
+                            && this.limit.FAST_PLACEMENT
+                            // If the specific queue doesn't support it
+                            && queue.supports(FaweQueue.Capability.CHANGE_TASKS)
+                            // If the edit uses items from the inventory we can't use a delayed task
+                            && this.blockBag == null;
         }
         if (Settings.IMP.EXPERIMENTAL.ANVIL_QUEUE_MODE && !(queue instanceof MCAQueue)) {
             queue = new MCAQueue(queue);
@@ -584,6 +580,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
     /**
      * Set the ChangeSet without hooking into any recording mechanism or triggering any actions.<br/>
      * Used internally to set the ChangeSet during completion to record custom changes which aren't normally recorded
+     *
      * @param set
      */
     public void setRawChangeSet(@Nullable FaweChangeSet set) {
@@ -1297,7 +1294,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
         if (used.MAX_FAILS > 0) {
             if (used.MAX_CHANGES > 0 || used.MAX_ENTITIES > 0) {
                 BBC.WORLDEDIT_SOME_FAILS.send(player, used.MAX_FAILS);
-            } else if (new ExtentTraverser(this).findAndGet(FaweRegionExtent.class) != null){
+            } else if (new ExtentTraverser(this).findAndGet(FaweRegionExtent.class) != null) {
                 BBC.WORLDEDIT_CANCEL_REASON_OUTSIDE_REGION.send(player);
             } else {
                 BBC.WORLDEDIT_CANCEL_REASON_OUTSIDE_LEVEL.send(player);
@@ -1423,7 +1420,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * Fills an area recursively in the X/Z directions.
      *
      * @param origin    the location to start from
-     * @param pattern     the block to fill with
+     * @param pattern   the block to fill with
      * @param radius    the radius of the spherical area to fill
      * @param depth     the maximum depth, starting from the origin
      * @param direction the direction to fill

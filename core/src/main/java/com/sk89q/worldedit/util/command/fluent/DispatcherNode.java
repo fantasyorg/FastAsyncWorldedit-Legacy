@@ -26,6 +26,7 @@ import com.sk89q.worldedit.util.command.CommandCallable;
 import com.sk89q.worldedit.util.command.Dispatcher;
 import com.sk89q.worldedit.util.command.SimpleDispatcher;
 import com.sk89q.worldedit.util.command.parametric.ParametricBuilder;
+
 import javax.annotation.Nullable;
 
 /**
@@ -120,7 +121,7 @@ public class DispatcherNode {
      * Build and register sub commands with this dispatcher using the
      * {@link ParametricBuilder} assigned on the objects registered command aliases {@link com.sk89q.minecraft.util.commands.Command}.
      *
-     * @param object the object provided to the {@link ParametricBuilder}
+     * @param object    the object provided to the {@link ParametricBuilder}
      * @param processor the command processor
      * @return this object
      */

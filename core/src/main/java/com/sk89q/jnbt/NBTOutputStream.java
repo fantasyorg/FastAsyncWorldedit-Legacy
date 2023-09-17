@@ -20,15 +20,10 @@
 package com.sk89q.jnbt;
 
 import com.boydti.fawe.object.io.LittleEndianOutputStream;
-import java.io.Closeable;
-import java.io.DataOutput;
-import java.io.DataOutputStream;
-import java.io.Flushable;
-import java.io.IOException;
-import java.io.OutputStream;
+
+import java.io.*;
 import java.util.List;
 import java.util.Map;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

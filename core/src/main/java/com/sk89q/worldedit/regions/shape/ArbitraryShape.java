@@ -19,11 +19,7 @@
 
 package com.sk89q.worldedit.regions.shape;
 
-import com.sk89q.worldedit.BlockVector;
-import com.sk89q.worldedit.EditSession;
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.WorldEditException;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.function.pattern.Pattern;
 import com.sk89q.worldedit.function.pattern.Patterns;

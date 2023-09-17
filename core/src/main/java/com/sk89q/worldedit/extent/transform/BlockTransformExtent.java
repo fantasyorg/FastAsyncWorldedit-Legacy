@@ -19,9 +19,9 @@ import com.sk89q.worldedit.world.biome.BaseBiome;
 import com.sk89q.worldedit.world.registry.BlockRegistry;
 import com.sk89q.worldedit.world.registry.State;
 import com.sk89q.worldedit.world.registry.StateValue;
-import java.util.Map;
-import javax.annotation.Nullable;
 
+import javax.annotation.Nullable;
+import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

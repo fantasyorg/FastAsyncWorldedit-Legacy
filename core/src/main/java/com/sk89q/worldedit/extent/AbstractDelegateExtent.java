@@ -34,9 +34,9 @@ import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.util.Location;
 import com.sk89q.worldedit.world.biome.BaseBiome;
 import com.sk89q.worldedit.world.registry.BundledBlockData;
-import java.util.List;
-import javax.annotation.Nullable;
 
+import javax.annotation.Nullable;
+import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

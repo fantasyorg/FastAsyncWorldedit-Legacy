@@ -44,6 +44,7 @@ import com.sk89q.worldedit.util.command.binding.Range;
 import com.sk89q.worldedit.util.command.binding.Switch;
 import com.sk89q.worldedit.util.command.parametric.Optional;
 import com.sk89q.worldedit.world.World;
+
 import java.io.File;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -200,12 +201,12 @@ public class HistoryCommands extends MethodCommands {
                 BBC.ROLLBACK_ELEMENT.send(player, Fawe.imp().getWorldName(edit.getWorld()) + "/" + user + "-" + edit.getIndex());
                 count.incrementAndGet();
             }
-            }, new Runnable() {
-                @Override
-                public void run() {
-                    BBC.TOOL_INSPECT_INFO_FOOTER.send(player, count);
-                }
-            }, true, restore);
+        }, new Runnable() {
+            @Override
+            public void run() {
+                BBC.TOOL_INSPECT_INFO_FOOTER.send(player, count);
+            }
+        }, true, restore);
     }
 
     @Command(

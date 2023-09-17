@@ -25,7 +25,6 @@ import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.function.RegionFunction;
 import com.sk89q.worldedit.patterns.Pattern;
 
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**

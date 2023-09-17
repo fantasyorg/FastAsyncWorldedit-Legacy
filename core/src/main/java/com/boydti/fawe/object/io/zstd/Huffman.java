@@ -15,7 +15,6 @@ package com.boydti.fawe.object.io.zstd;
 
 import java.util.Arrays;
 
-
 import static com.boydti.fawe.object.io.zstd.BitStream.isEndOfStream;
 import static com.boydti.fawe.object.io.zstd.BitStream.peekBitsFast;
 import static com.boydti.fawe.object.io.zstd.UnsafeUtil.UNSAFE;
@@ -24,8 +23,7 @@ import static com.boydti.fawe.object.io.zstd.Util.verify;
 import static com.boydti.fawe.object.io.zstd.ZstdFrameDecompressor.SIZE_OF_INT;
 import static com.boydti.fawe.object.io.zstd.ZstdFrameDecompressor.SIZE_OF_SHORT;
 
-class Huffman
-{
+class Huffman {
     private static final int MAX_SYMBOL = 255;
     private static final int MAX_TABLE_LOG = 12;
 
@@ -40,13 +38,11 @@ class Huffman
 
     private final FiniteStateEntropy finiteStateEntropy = new FiniteStateEntropy(6);
 
-    public boolean isLoaded()
-    {
+    public boolean isLoaded() {
         return tableLog != -1;
     }
 
-    public int readTable(final Object inputBase, final long inputAddress, final int size)
-    {
+    public int readTable(final Object inputBase, final long inputAddress, final int size) {
         Arrays.fill(ranks, 0);
         long input = inputAddress;
 
@@ -67,8 +63,7 @@ class Huffman
                 weights[i] = (byte) (value >>> 4);
                 weights[i + 1] = (byte) (value & 0b1111);
             }
-        }
-        else {
+        } else {
             verify(inputSize + 1 <= size, input, "Not enough input bytes");
 
             outputSize = finiteStateEntropy.decompress(inputBase, input, input + inputSize, weights);
@@ -121,8 +116,7 @@ class Huffman
         return inputSize + 1;
     }
 
-    public void decodeSingleStream(final Object inputBase, final long inputAddress, final long inputLimit, final Object outputBase, final long outputAddress, final long outputLimit)
-    {
+    public void decodeSingleStream(final Object inputBase, final long inputAddress, final long inputLimit, final Object outputBase, final long outputAddress, final long outputLimit) {
         BitStream.Initializer initializer = new BitStream.Initializer(inputBase, inputAddress, inputLimit);
         initializer.initialize();
 
@@ -157,8 +151,7 @@ class Huffman
         decodeTail(inputBase, inputAddress, currentAddress, bitsConsumed, bits, outputBase, output, outputLimit);
     }
 
-    public void decode4Streams(final Object inputBase, final long inputAddress, final long inputLimit, final Object outputBase, final long outputAddress, final long outputLimit)
-    {
+    public void decode4Streams(final Object inputBase, final long inputAddress, final long inputLimit, final Object outputBase, final long outputAddress, final long outputLimit) {
         verify(inputLimit - inputAddress >= 10, inputAddress, "Input is corrupted"); // jump table + 1 byte per stream
 
         long start1 = inputAddress + 3 * SIZE_OF_SHORT; // for the shorts we read below
@@ -280,8 +273,7 @@ class Huffman
         decodeTail(inputBase, start4, stream4currentAddress, stream4bitsConsumed, stream4bits, outputBase, output4, outputLimit);
     }
 
-    private void decodeTail(final Object inputBase, final long startAddress, long currentAddress, int bitsConsumed, long bits, final Object outputBase, long outputAddress, final long outputLimit)
-    {
+    private void decodeTail(final Object inputBase, final long startAddress, long currentAddress, int bitsConsumed, long bits, final Object outputBase, long outputAddress, final long outputLimit) {
         int tableLog = this.tableLog;
         byte[] numbersOfBits = this.numbersOfBits;
         byte[] symbols = this.symbols;
@@ -308,8 +300,7 @@ class Huffman
         verify(isEndOfStream(startAddress, currentAddress, bitsConsumed), startAddress, "Bit stream is not fully consumed");
     }
 
-    private static int decodeSymbol(Object outputBase, long outputAddress, long bitContainer, int bitsConsumed, int tableLog, byte[] numbersOfBits, byte[] symbols)
-    {
+    private static int decodeSymbol(Object outputBase, long outputAddress, long bitContainer, int bitsConsumed, int tableLog, byte[] numbersOfBits, byte[] symbols) {
         int value = (int) peekBitsFast(bitsConsumed, bitContainer, tableLog);
         UNSAFE.putByte(outputBase, outputAddress, symbols[value]);
         return bitsConsumed + numbersOfBits[value];

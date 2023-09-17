@@ -16,11 +16,7 @@ package net.jpountz.lz4;
 
 import net.jpountz.util.SafeUtils;
 
-
-import static net.jpountz.lz4.LZ4Constants.LAST_LITERALS;
-import static net.jpountz.lz4.LZ4Constants.ML_BITS;
-import static net.jpountz.lz4.LZ4Constants.ML_MASK;
-import static net.jpountz.lz4.LZ4Constants.RUN_MASK;
+import static net.jpountz.lz4.LZ4Constants.*;
 
 enum LZ4SafeUtils {
     ;

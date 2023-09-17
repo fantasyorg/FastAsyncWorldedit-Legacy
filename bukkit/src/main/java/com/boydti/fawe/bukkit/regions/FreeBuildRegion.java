@@ -70,7 +70,7 @@ public class FreeBuildRegion extends BukkitMaskManager {
 
             @Override
             public boolean isValid(FawePlayer player, MaskType type) {
-                return bukkitWorld == ((FawePlayer<Player>)player).parent.getWorld() && type == MaskType.MEMBER;
+                return bukkitWorld == ((FawePlayer<Player>) player).parent.getWorld() && type == MaskType.MEMBER;
             }
 
             @Override

@@ -5,27 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
-import java.util.logging.Level;
-import org.bukkit.Achievement;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Statistic;
+import org.bukkit.*;
 import org.bukkit.Statistic.Type;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -34,6 +14,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.lang.reflect.*;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.logging.Level;
 
 import static com.boydti.fawe.bukkit.chat.TextualComponent.rawText;
 
@@ -134,7 +120,6 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
     }
 
     /**
-     *
      * @param text Text with coloring
      * @return This builder instance.
      * @throws IllegalArgumentException If the specified {@code ChatColor} enumeration value is not a color (but a format value).
@@ -158,7 +143,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
                     last = i + 1;
                 }
             }
-            if (c  == '\u00A7') {
+            if (c == '\u00A7') {
                 color = true;
             }
         }
@@ -837,12 +822,18 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
     }
 
     private void onClick(final String name, final String data) {
-        onCurrent(m -> { m.clickActionName = name; m.clickActionData = data; });
+        onCurrent(m -> {
+            m.clickActionName = name;
+            m.clickActionData = data;
+        });
         dirty = true;
     }
 
     private void onHover(final String name, final JsonRepresentedObject data) {
-        onCurrent(m -> { m.hoverActionName = name; m.hoverActionData = data; });
+        onCurrent(m -> {
+            m.hoverActionName = name;
+            m.hoverActionData = data;
+        });
         dirty = true;
     }
 

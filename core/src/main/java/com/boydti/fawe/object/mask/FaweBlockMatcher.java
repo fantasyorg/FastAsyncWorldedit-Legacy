@@ -3,6 +3,7 @@ package com.boydti.fawe.object.mask;
 import com.boydti.fawe.FaweCache;
 import com.boydti.fawe.object.PseudoRandom;
 import com.sk89q.worldedit.blocks.BaseBlock;
+
 import java.util.Set;
 
 public abstract class FaweBlockMatcher {

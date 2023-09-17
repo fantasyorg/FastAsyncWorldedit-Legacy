@@ -21,6 +21,7 @@ package com.sk89q.worldedit.internal.expression.runtime;
 
 import com.sk89q.worldedit.internal.expression.Expression;
 import com.sk89q.worldedit.internal.expression.parser.ParserException;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.InvocationTargetException;

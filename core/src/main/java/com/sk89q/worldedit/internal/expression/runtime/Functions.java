@@ -26,12 +26,9 @@ import com.sk89q.worldedit.internal.expression.runtime.Function.Dynamic;
 import com.sk89q.worldedit.math.noise.PerlinNoise;
 import com.sk89q.worldedit.math.noise.RidgedMultiFractalNoise;
 import com.sk89q.worldedit.math.noise.VoronoiNoise;
+
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Contains all functions that can be used in expressions.

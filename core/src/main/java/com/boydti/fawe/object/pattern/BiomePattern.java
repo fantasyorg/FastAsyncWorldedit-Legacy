@@ -6,6 +6,7 @@ import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.world.biome.BaseBiome;
+
 import java.io.IOException;
 
 public class BiomePattern extends ExistingPattern {

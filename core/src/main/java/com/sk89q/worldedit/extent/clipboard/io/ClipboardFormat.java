@@ -50,6 +50,8 @@ import com.sk89q.worldedit.extent.clipboard.Clipboard;
 import com.sk89q.worldedit.extent.clipboard.ClipboardFormats;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.world.registry.WorldData;
+
+import javax.annotation.Nullable;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -63,8 +65,6 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-import javax.annotation.Nullable;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -244,7 +244,8 @@ public enum ClipboardFormat {
         public DiskOptimizedClipboard createUncompressedReadWrite(int width, int height, int length, File file) {
             return new DiskOptimizedClipboard(width, height, length, file);
         }
-    }),;
+    }),
+    ;
 
     private static final Map<String, ClipboardFormat> aliasMap;
 
@@ -341,7 +342,7 @@ public enum ClipboardFormat {
             if (input.startsWith("#")) {
                 String[] extensions;
                 if (format != null) {
-                    extensions = new String[] { format.getExtension() };
+                    extensions = new String[]{format.getExtension()};
                 } else {
                     extensions = ClipboardFormats.getFileExtensionArray();
                 }
@@ -368,7 +369,8 @@ public enum ClipboardFormat {
                 }
             }
             if (f == null || !f.exists() || !MainUtil.isInSubDirectory(working, f)) {
-                if (message) player.printError("Schematic " + input + " does not exist! (" + ((f == null) ? false : f.exists()) + "|" + f + "|" + (f == null ? false : !MainUtil.isInSubDirectory(working, f)) + ")");
+                if (message)
+                    player.printError("Schematic " + input + " does not exist! (" + ((f == null) ? false : f.exists()) + "|" + f + "|" + (f == null ? false : !MainUtil.isInSubDirectory(working, f)) + ")");
                 return null;
             }
             if (format == null && f.isFile()) {
@@ -509,6 +511,7 @@ public enum ClipboardFormat {
 
     /**
      * Set the player's clipboard
+     *
      * @param player
      * @param uri
      * @param in

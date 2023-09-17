@@ -5,8 +5,9 @@ import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.function.mask.Mask2D;
 import com.sk89q.worldedit.function.mask.SolidBlockMask;
-import java.util.Arrays;
+
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 public class AngleMask extends SolidBlockMask implements ResettableMask {
     public static double ADJACENT_MOD = 0.5;
@@ -95,7 +96,7 @@ public class AngleMask extends SolidBlockMask implements ResettableMask {
         double slope;
         boolean aboveMin;
         lastY = y;
-        slope = Math.abs(getHeight(x + distance, y, z) - getHeight(x -distance, y, z)) * ADJACENT_MOD;
+        slope = Math.abs(getHeight(x + distance, y, z) - getHeight(x - distance, y, z)) * ADJACENT_MOD;
         if (checkFirst) {
             if (slope >= min) {
                 return lastValue = true;

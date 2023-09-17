@@ -5,29 +5,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import net.minecraft.server.v1_12_R1.*;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import net.minecraft.server.v1_12_R1.BaseBlockPosition;
-import net.minecraft.server.v1_12_R1.Block;
-import net.minecraft.server.v1_12_R1.BlockStateDirection;
-import net.minecraft.server.v1_12_R1.BlockStateList;
-import net.minecraft.server.v1_12_R1.EnumDirection;
-import net.minecraft.server.v1_12_R1.EnumPistonReaction;
-import net.minecraft.server.v1_12_R1.IBlockData;
-import net.minecraft.server.v1_12_R1.IBlockState;
-import net.minecraft.server.v1_12_R1.Material;
-import net.minecraft.server.v1_12_R1.MinecraftKey;
-import net.minecraft.server.v1_12_R1.Vec3D;
+import java.util.*;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class NMSRegistryDumper {
@@ -239,7 +223,7 @@ public class NMSRegistryDumper {
         map.put("unpushable", m.getPushReaction() == EnumPistonReaction.BLOCK);
         map.put("adventureModeExempt", getField(m, Material.class, "isAdventureModeExempt", "Q"));
         //map.put("mapColor", rgb(m.getMaterialMapColor().colorValue));
-        map.put("ambientOcclusionLightValue", b.isOccluding(bs) ? 0.2F:1.0F);
+        map.put("ambientOcclusionLightValue", b.isOccluding(bs) ? 0.2F : 1.0F);
         map.put("grassBlocking", false); // idk what this property was originally supposed to be...grass uses a combination of light values to check growth
         return map;
     }
@@ -263,7 +247,7 @@ public class NMSRegistryDumper {
 
     private String rgb(int i) {
         int r = (i >> 16) & 0xFF;
-        int g = (i >>  8) & 0xFF;
+        int g = (i >> 8) & 0xFF;
         int b = i & 0xFF;
         return String.format("#%02x%02x%02x", r, g, b);
     }
@@ -283,6 +267,7 @@ public class NMSRegistryDumper {
         public BaseBlockPosition read(final JsonReader in) throws IOException {
             throw new UnsupportedOperationException();
         }
+
         @Override
         public void write(final JsonWriter out, final BaseBlockPosition vec) throws IOException {
             out.beginArray();
@@ -298,6 +283,7 @@ public class NMSRegistryDumper {
         public Vec3D read(final JsonReader in) throws IOException {
             throw new UnsupportedOperationException();
         }
+
         @Override
         public void write(final JsonWriter out, final Vec3D vec) throws IOException {
             out.beginArray();

@@ -22,7 +22,9 @@ package com.sk89q.worldedit.function;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEditException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

@@ -14,10 +14,7 @@ package net.jpountz.lz4;
  * limitations under the License.
  */
 
-import static net.jpountz.lz4.LZ4Constants.HASH_LOG;
-import static net.jpountz.lz4.LZ4Constants.HASH_LOG_64K;
-import static net.jpountz.lz4.LZ4Constants.HASH_LOG_HC;
-import static net.jpountz.lz4.LZ4Constants.MIN_MATCH;
+import static net.jpountz.lz4.LZ4Constants.*;
 
 public enum LZ4Utils {
     ;

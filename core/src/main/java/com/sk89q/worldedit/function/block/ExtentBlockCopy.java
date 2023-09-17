@@ -32,8 +32,8 @@ import com.sk89q.worldedit.internal.helper.MCDirections;
 import com.sk89q.worldedit.math.transform.Transform;
 import com.sk89q.worldedit.util.Direction;
 import com.sk89q.worldedit.util.Direction.Flag;
-import java.util.Map;
 
+import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

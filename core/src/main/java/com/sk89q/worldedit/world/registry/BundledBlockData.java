@@ -21,32 +21,21 @@ package com.sk89q.worldedit.world.registry;
 
 import com.boydti.fawe.FaweCache;
 import com.google.common.io.Resources;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.blocks.BlockMaterial;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
-import javax.annotation.Nullable;
 
 /**
  * Provides block data based on the built-in block database that is bundled
@@ -182,8 +171,8 @@ public class BundledBlockData {
             }
         }
         if (!entry.states.isEmpty()) { // Fix vine direction 2
-            String[] states = new String[] {"north", "east", "south", "west", "up", "down"};
-            Vector[] dirs = new Vector[] {
+            String[] states = new String[]{"north", "east", "south", "west", "up", "down"};
+            Vector[] dirs = new Vector[]{
                     new Vector(0, 0, -1),
                     new Vector(1, 0, 0),
                     new Vector(0, 0, 1),

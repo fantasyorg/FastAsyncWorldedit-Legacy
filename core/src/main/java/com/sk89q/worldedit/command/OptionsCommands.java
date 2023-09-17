@@ -21,9 +21,9 @@ import com.sk89q.worldedit.extent.clipboard.Clipboard;
 import com.sk89q.worldedit.function.mask.Mask;
 import com.sk89q.worldedit.util.command.parametric.Optional;
 import com.sk89q.worldedit.util.command.parametric.ParameterException;
+
 import java.io.FileNotFoundException;
 import java.util.HashSet;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

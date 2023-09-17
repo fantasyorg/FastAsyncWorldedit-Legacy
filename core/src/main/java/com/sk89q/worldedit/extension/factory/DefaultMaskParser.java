@@ -58,7 +58,7 @@ public class DefaultMaskParser extends FaweParser<Mask> {
     public Mask parseFromInput(String input, ParserContext context) throws InputParseException {
         if (input.isEmpty()) {
             throw new SuggestInputParseException("No input provided", "", () -> Stream.of("#", ",", "&").map(n -> n + ":").collect(Collectors.toList())
-                // TODO namespaces
+                    // TODO namespaces
             );
         }
         Extent extent = Request.request().getExtent();

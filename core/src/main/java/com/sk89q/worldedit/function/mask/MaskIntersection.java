@@ -20,17 +20,11 @@
 package com.sk89q.worldedit.function.mask;
 
 import com.sk89q.worldedit.Vector;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-import javax.annotation.Nullable;
-
+import java.util.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

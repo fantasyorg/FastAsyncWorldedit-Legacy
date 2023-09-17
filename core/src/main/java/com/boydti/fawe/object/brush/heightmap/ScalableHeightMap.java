@@ -6,6 +6,7 @@ import com.boydti.fawe.util.MathMan;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.extent.clipboard.Clipboard;
+
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.io.IOException;

@@ -1,37 +1,18 @@
 package com.boydti.fawe;
 
 import com.boydti.fawe.object.PseudoRandom;
-import com.sk89q.jnbt.ByteArrayTag;
-import com.sk89q.jnbt.ByteTag;
-import com.sk89q.jnbt.CompoundTag;
-import com.sk89q.jnbt.DoubleTag;
-import com.sk89q.jnbt.EndTag;
-import com.sk89q.jnbt.FloatTag;
-import com.sk89q.jnbt.IntArrayTag;
-import com.sk89q.jnbt.IntTag;
-import com.sk89q.jnbt.ListTag;
-import com.sk89q.jnbt.LongTag;
-import com.sk89q.jnbt.ShortTag;
-import com.sk89q.jnbt.StringTag;
-import com.sk89q.jnbt.Tag;
+import com.sk89q.jnbt.*;
 import com.sk89q.worldedit.WorldEdit;
-import com.sk89q.worldedit.blocks.BaseBlock;
-import com.sk89q.worldedit.blocks.BaseItem;
-import com.sk89q.worldedit.blocks.BlockType;
-import com.sk89q.worldedit.blocks.ImmutableBlock;
-import com.sk89q.worldedit.blocks.ImmutableDatalessBlock;
-import com.sk89q.worldedit.blocks.ImmutableNBTBlock;
+import com.sk89q.worldedit.blocks.*;
 import com.sk89q.worldedit.extension.input.InputParseException;
 import com.sk89q.worldedit.extension.input.ParserContext;
 import com.sk89q.worldedit.world.biome.BaseBiome;
 import com.sk89q.worldedit.world.registry.BundledBlockData;
-import java.awt.Color;
+
+import java.awt.*;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FaweCache {
     /**

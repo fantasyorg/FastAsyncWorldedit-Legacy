@@ -27,7 +27,6 @@ import com.sk89q.worldedit.util.command.binding.Text;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
 /**

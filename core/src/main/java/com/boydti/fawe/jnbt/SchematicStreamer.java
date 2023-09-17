@@ -14,6 +14,7 @@ import com.sk89q.worldedit.entity.BaseEntity;
 import com.sk89q.worldedit.extent.clipboard.BlockArrayClipboard;
 import com.sk89q.worldedit.extent.clipboard.Clipboard;
 import com.sk89q.worldedit.regions.CuboidRegion;
+
 import java.io.IOException;
 import java.util.UUID;
 
@@ -36,7 +37,7 @@ public class SchematicStreamer extends NBTStreamer {
         NBTStreamReader initializer2 = new NBTStreamReader<Integer, Integer>() {
             @Override
             public void run(Integer length, Integer type) {
-                setupClipboard(length*2);
+                setupClipboard(length * 2);
             }
         };
         addReader("Schematic.Blocks.?", initializer);

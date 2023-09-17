@@ -22,7 +22,6 @@ package com.sk89q.worldedit.world.biome;
 import com.sk89q.minecraft.util.commands.Link;
 import com.sk89q.worldedit.command.BiomeCommands;
 
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**

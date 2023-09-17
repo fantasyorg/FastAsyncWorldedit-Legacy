@@ -32,7 +32,6 @@ import com.sk89q.worldedit.regions.CuboidRegion;
 import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.world.registry.WorldData;
 
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**

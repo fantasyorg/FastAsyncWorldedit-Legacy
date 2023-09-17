@@ -36,7 +36,10 @@ import com.boydti.fawe.wrappers.FakePlayer;
 import com.boydti.fawe.wrappers.LocationMaskedPlayerWrapper;
 import com.google.common.base.Joiner;
 import com.sk89q.minecraft.util.commands.*;
-import com.sk89q.worldedit.*;
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.LocalConfiguration;
+import com.sk89q.worldedit.LocalSession;
+import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.command.*;
 import com.sk89q.worldedit.command.argument.ReplaceParser;
 import com.sk89q.worldedit.command.argument.TreeGeneratorParser;
@@ -52,11 +55,16 @@ import com.sk89q.worldedit.function.factory.Deform.Mode;
 import com.sk89q.worldedit.internal.command.*;
 import com.sk89q.worldedit.session.request.Request;
 import com.sk89q.worldedit.util.auth.AuthorizationException;
-import com.sk89q.worldedit.util.command.*;
+import com.sk89q.worldedit.util.command.CallableProcessor;
+import com.sk89q.worldedit.util.command.CommandCallable;
+import com.sk89q.worldedit.util.command.Dispatcher;
+import com.sk89q.worldedit.util.command.InvalidUsageException;
 import com.sk89q.worldedit.util.command.composition.ProvidedValue;
 import com.sk89q.worldedit.util.command.fluent.CommandGraph;
 import com.sk89q.worldedit.util.command.fluent.DispatcherNode;
-import com.sk89q.worldedit.util.command.parametric.*;
+import com.sk89q.worldedit.util.command.parametric.ExceptionConverter;
+import com.sk89q.worldedit.util.command.parametric.LegacyCommandsHandler;
+import com.sk89q.worldedit.util.command.parametric.ParametricBuilder;
 import com.sk89q.worldedit.util.eventbus.Subscribe;
 import com.sk89q.worldedit.util.logging.DynamicStreamHandler;
 import com.sk89q.worldedit.util.logging.LogFormat;
@@ -68,13 +76,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -149,11 +151,12 @@ public final class CommandManager {
             Class.forName("com.intellectualcrafters.plot.PS");
             CFICommand cfi = new CFICommand(worldEdit, builder);
             registerCommands(cfi);
-        } catch (ClassNotFoundException e) {}
+        } catch (ClassNotFoundException e) {
+        }
     }
 
     /**
-    /**
+     * /**
      * Register all the methods in the class as commands<br>
      * - You should try to register commands during startup
      *
@@ -218,7 +221,7 @@ public final class CommandManager {
             }
             platform.registerCommands(dispatcher);
         } else {
-            commandMap.putIfAbsent(callable, new String[][] {aliases, command.aliases()});
+            commandMap.putIfAbsent(callable, new String[][]{aliases, command.aliases()});
         }
     }
 

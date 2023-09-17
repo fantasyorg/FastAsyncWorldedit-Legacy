@@ -1,6 +1,7 @@
 package com.boydti.fawe.util;
 
 import com.sk89q.worldedit.blocks.BaseBlock;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;

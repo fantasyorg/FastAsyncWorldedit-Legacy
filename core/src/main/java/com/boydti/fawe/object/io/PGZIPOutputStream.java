@@ -1,5 +1,7 @@
 package com.boydti.fawe.object.io;
 
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -7,18 +9,11 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 import java.util.zip.CRC32;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.GZIPOutputStream;
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
 
 /**
  * A multi-threaded version of {@link GZIPOutputStream}.

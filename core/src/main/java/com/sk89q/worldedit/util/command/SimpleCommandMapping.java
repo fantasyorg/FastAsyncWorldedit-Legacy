@@ -20,6 +20,7 @@
 package com.sk89q.worldedit.util.command;
 
 import com.sk89q.worldedit.util.command.parametric.ParametricCallable;
+
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
@@ -35,7 +36,7 @@ public class SimpleCommandMapping implements CommandMapping {
      * Create a new instance.
      *
      * @param callable the command callable
-     * @param alias a list of all aliases, where the first one is the primary one
+     * @param alias    a list of all aliases, where the first one is the primary one
      */
     public SimpleCommandMapping(CommandCallable callable, String... alias) {
         super();

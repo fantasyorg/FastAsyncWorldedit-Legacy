@@ -284,7 +284,7 @@ cancel:
   worldedit_cancel_reason_outside_level: Außerhalb der Welt
   worldedit_cancel_reason_outside_region: Außerhalb erlaubter Region (Umgehe es mit /wea,
     oder deaktiviere `region-restrictions` in der config.yml)
-history: {}
+history: { }
 navigation:
   ascend_fail: Über dir konnte kein freier Platz gefunden werden.
   ascended_plural: '%s0 Schichten aufgestiegen.'

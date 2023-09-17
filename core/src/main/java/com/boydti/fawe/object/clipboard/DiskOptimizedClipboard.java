@@ -19,6 +19,7 @@ import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.extent.clipboard.BlockArrayClipboard;
 import com.sk89q.worldedit.regions.CuboidRegion;
 import com.sk89q.worldedit.world.biome.BaseBiome;
+
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
@@ -28,12 +29,7 @@ import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * A clipboard with disk backed storage. (lower memory + loads on crash)

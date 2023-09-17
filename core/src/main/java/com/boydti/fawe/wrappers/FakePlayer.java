@@ -19,8 +19,9 @@ import com.sk89q.worldedit.session.SessionKey;
 import com.sk89q.worldedit.util.Location;
 import com.sk89q.worldedit.world.NullWorld;
 import com.sk89q.worldedit.world.World;
-import java.util.UUID;
+
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 /**
  * Only really useful for executing commands from console<br>

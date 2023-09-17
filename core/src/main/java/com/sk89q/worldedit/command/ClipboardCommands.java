@@ -64,6 +64,7 @@ import com.sk89q.worldedit.regions.selector.CuboidRegionSelector;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.util.command.binding.Switch;
 import com.sk89q.worldedit.util.command.parametric.Optional;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -75,7 +76,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
 
 import static com.sk89q.minecraft.util.commands.Logging.LogMode.PLACEMENT;
 import static com.sk89q.minecraft.util.commands.Logging.LogMode.REGION;
@@ -318,7 +318,8 @@ public class ClipboardCommands extends MethodCommands {
                     try (ZipOutputStream zos = new ZipOutputStream(out)) {
                         for (File file : files) {
                             String fileName = file.getName();
-                            if (MainUtil.isInSubDirectory(working, file)) fileName = working.toURI().relativize(file.toURI()).getPath();
+                            if (MainUtil.isInSubDirectory(working, file))
+                                fileName = working.toURI().relativize(file.toURI()).getPath();
                             ZipEntry ze = new ZipEntry(fileName);
                             zos.putNextEntry(ze);
                             Files.copy(file.toPath(), zos);

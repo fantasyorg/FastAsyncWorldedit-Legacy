@@ -21,6 +21,7 @@ package com.sk89q.worldedit;
 
 import com.boydti.fawe.util.MathMan;
 import com.sk89q.worldedit.math.transform.AffineTransform;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;

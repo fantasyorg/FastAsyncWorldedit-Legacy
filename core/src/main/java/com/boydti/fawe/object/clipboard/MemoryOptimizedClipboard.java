@@ -16,11 +16,8 @@ import com.sk89q.worldedit.entity.BaseEntity;
 import com.sk89q.worldedit.entity.Entity;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.world.biome.BaseBiome;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 public class MemoryOptimizedClipboard extends FaweClipboard {
 

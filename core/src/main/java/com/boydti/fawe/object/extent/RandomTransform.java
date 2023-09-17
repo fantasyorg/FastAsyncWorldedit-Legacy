@@ -6,11 +6,11 @@ import com.boydti.fawe.object.random.TrueRandom;
 import com.sk89q.worldedit.extent.AbstractDelegateExtent;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.function.pattern.RandomPattern;
+
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

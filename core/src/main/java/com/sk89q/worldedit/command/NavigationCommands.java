@@ -26,16 +26,10 @@ import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.minecraft.util.commands.CommandContext;
 import com.sk89q.minecraft.util.commands.CommandPermissions;
 import com.sk89q.minecraft.util.commands.Logging;
-import com.sk89q.worldedit.LocalConfiguration;
-import com.sk89q.worldedit.LocalSession;
-import com.sk89q.worldedit.LocalWorld;
-import com.sk89q.worldedit.WorldEdit;
-import com.sk89q.worldedit.WorldEditException;
-import com.sk89q.worldedit.WorldVector;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.entity.Player;
 import com.sk89q.worldedit.util.command.parametric.Optional;
 import com.sk89q.worldedit.world.World;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.sk89q.minecraft.util.commands.Logging.LogMode.POSITION;
@@ -169,8 +163,8 @@ public class NavigationCommands {
             aliases = {"jumpto", "j"},
             usage = "[world,x,y,z]",
             desc = "Teleport to a location" +
-            		"Flags:\n" + 
-            		"  -f forces the specified position to be used",
+                    "Flags:\n" +
+                    "  -f forces the specified position to be used",
             flags = "f",
             min = 0,
             max = 1
@@ -192,7 +186,8 @@ public class NavigationCommands {
             pos = player.getSolidBlockTrace(300);
         }
         if (pos != null) {
-            if(args.hasFlag('f')) player.setPosition(pos); else player.findFreePosition(pos);
+            if (args.hasFlag('f')) player.setPosition(pos);
+            else player.findFreePosition(pos);
             BBC.POOF.send(player);
         } else {
             BBC.NO_BLOCK.send(player);

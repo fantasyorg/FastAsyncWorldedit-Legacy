@@ -53,14 +53,15 @@ public class ReflectionUtils {
         try {
             Method getDeclaredFields0 = Class.class.getDeclaredMethod("getDeclaredFields0", boolean.class);
             getDeclaredFields0.setAccessible(true);
-            Field[] fields = (Field[])getDeclaredFields0.invoke(fieldClass, new Object[] { Boolean.valueOf(false) });
+            Field[] fields = (Field[]) getDeclaredFields0.invoke(fieldClass, new Object[]{Boolean.valueOf(false)});
             for (Field each : fields) {
                 if ("modifiers".equals(each.getName())) {
                     modifiers = each;
                     break;
                 }
             }
-        } catch (Throwable throwable) {}
+        } catch (Throwable throwable) {
+        }
 
         return modifiers;
     }

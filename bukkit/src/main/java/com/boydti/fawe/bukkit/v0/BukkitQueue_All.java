@@ -15,6 +15,12 @@ import com.boydti.fawe.util.TaskManager;
 import com.google.common.collect.MapMaker;
 import com.sk89q.jnbt.CompoundTag;
 import com.sk89q.worldedit.blocks.BaseBlock;
+import org.bukkit.Chunk;
+import org.bukkit.ChunkSnapshot;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.block.Biome;
+
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.lang.reflect.Field;
@@ -22,11 +28,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayDeque;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
-import org.bukkit.Chunk;
-import org.bukkit.ChunkSnapshot;
-import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.block.Biome;
 
 public class BukkitQueue_All extends BukkitQueue_0<ChunkSnapshot, ChunkSnapshot, ChunkSnapshot> {
 
@@ -170,7 +171,7 @@ public class BukkitQueue_All extends BukkitQueue_0<ChunkSnapshot, ChunkSnapshot,
                         Object nmsWorld = methodGetHandleWorld.invoke(world);
                         Object chunkProviderServer = fieldChunkProvider.get(nmsWorld);
                         Object chunkRegionLoader = fieldChunkLoader.get(chunkProviderServer);
-                        while ((boolean) methodFlush.invoke(chunkRegionLoader));
+                        while ((boolean) methodFlush.invoke(chunkRegionLoader)) ;
 
                         if (unloaded != null) {
                             Map regionMap = (Map) fieldRegionMap.get(null);
@@ -332,7 +333,8 @@ public class BukkitQueue_All extends BukkitQueue_0<ChunkSnapshot, ChunkSnapshot,
     @Override
     public boolean supports(Capability capability) {
         switch (capability) {
-            case CHANGE_TASKS: return getAdapter() != null;
+            case CHANGE_TASKS:
+                return getAdapter() != null;
         }
         return super.supports(capability);
     }
@@ -349,8 +351,9 @@ public class BukkitQueue_All extends BukkitQueue_0<ChunkSnapshot, ChunkSnapshot,
 
     /**
      * Exploiting a bug in the vanilla lighting algorithm for faster block placement
-     *  - Could have been achieved without reflection by force unloading specific chunks
-     *  - Much faster just setting the variable manually though
+     * - Could have been achieved without reflection by force unloading specific chunks
+     * - Much faster just setting the variable manually though
+     *
      * @param chunk
      * @return
      */
@@ -367,8 +370,9 @@ public class BukkitQueue_All extends BukkitQueue_0<ChunkSnapshot, ChunkSnapshot,
             }
             Object value = fieldNeighbors.get(nmsChunk);
             fieldNeighbors.set(nmsChunk, 0);
-            return new Object[] {nmsChunk, value};
-        } catch (Throwable ignore) {}
+            return new Object[]{nmsChunk, value};
+        } catch (Throwable ignore) {
+        }
         return null;
     }
 
@@ -396,7 +400,8 @@ public class BukkitQueue_All extends BukkitQueue_0<ChunkSnapshot, ChunkSnapshot,
         if (disableResult != null) {
             try {
                 fieldNeighbors.set(disableResult[0], 0x739C0);
-            } catch (Throwable ignore) {}
+            } catch (Throwable ignore) {
+            }
         }
     }
 

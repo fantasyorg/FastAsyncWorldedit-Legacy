@@ -4,11 +4,7 @@ import com.boydti.fawe.Fawe;
 import com.boydti.fawe.FaweAPI;
 import com.boydti.fawe.FaweCache;
 import com.boydti.fawe.config.Settings;
-import com.boydti.fawe.object.FaweChunk;
-import com.boydti.fawe.object.FaweQueue;
-import com.boydti.fawe.object.IntegerPair;
-import com.boydti.fawe.object.RunnableVal;
-import com.boydti.fawe.object.RunnableVal2;
+import com.boydti.fawe.object.*;
 import com.boydti.fawe.object.exception.FaweException;
 import com.boydti.fawe.object.extent.LightingExtent;
 import com.boydti.fawe.util.MainUtil;
@@ -22,8 +18,10 @@ import com.sk89q.worldedit.world.World;
 import com.sk89q.worldedit.world.biome.BaseBiome;
 import com.sk89q.worldedit.world.registry.BundledBlockData;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
@@ -310,7 +308,8 @@ public abstract class MappedFaweQueue<WORLD, CHUNK, CHUNKSECTIONS, SECTION> impl
     @Override
     public boolean supports(Capability capability) {
         switch (capability) {
-            case CHANGE_TASKS: return true;
+            case CHANGE_TASKS:
+                return true;
         }
         return false;
     }

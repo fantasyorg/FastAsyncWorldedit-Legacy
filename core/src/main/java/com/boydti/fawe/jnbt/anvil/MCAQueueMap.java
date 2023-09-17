@@ -10,12 +10,9 @@ import com.boydti.fawe.object.RunnableVal;
 import com.boydti.fawe.object.exception.FaweException;
 import com.boydti.fawe.util.MathMan;
 import com.boydti.fawe.util.SetQueue;
+
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MCAQueueMap implements IFaweQueueMap {

@@ -25,9 +25,9 @@ import com.sk89q.worldedit.extent.clipboard.Clipboard;
 import com.sk89q.worldedit.math.transform.Identity;
 import com.sk89q.worldedit.math.transform.Transform;
 import com.sk89q.worldedit.world.registry.WorldData;
+
 import java.util.Collections;
 import java.util.List;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -71,8 +71,8 @@ public class ClipboardHolder {
      * If there is a transformation applied, the returned clipboard will
      * not contain its effect.
      *
-     * @deprecated FAWE supports multiple loaded schematics {@link #getClipboards()}
      * @return the clipboard
+     * @deprecated FAWE supports multiple loaded schematics {@link #getClipboards()}
      */
     @Deprecated
     public Clipboard getClipboard() {
@@ -81,6 +81,7 @@ public class ClipboardHolder {
 
     /**
      * Get all currently held clipboards
+     *
      * @return
      */
     public List<Clipboard> getClipboards() {
@@ -93,8 +94,9 @@ public class ClipboardHolder {
 
     /**
      * Get all end ClipboardHolders<br/>
-     *  - Usually this will return itself.<br/>
-     *  - If this is a multi clipboard, it will return the children
+     * - Usually this will return itself.<br/>
+     * - If this is a multi clipboard, it will return the children
+     *
      * @return Set of end ClipboardHolders
      */
     public List<ClipboardHolder> getHolders() {

@@ -6,11 +6,7 @@ import com.boydti.fawe.object.extent.NullExtent;
 import com.boydti.fawe.object.extent.ResettableExtent;
 import com.boydti.fawe.util.TextureUtil;
 import com.boydti.fawe.util.image.ImageUtil;
-import com.sk89q.worldedit.EditSession;
-import com.sk89q.worldedit.LocalSession;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.Vector2D;
-import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.entity.Entity;
 import com.sk89q.worldedit.entity.Player;
 import com.sk89q.worldedit.extension.factory.DefaultTransformParser;
@@ -25,15 +21,12 @@ import com.sk89q.worldedit.session.request.Request;
 import com.sk89q.worldedit.util.command.binding.Range;
 import com.sk89q.worldedit.util.command.binding.Text;
 import com.sk89q.worldedit.util.command.binding.Validate;
-import com.sk89q.worldedit.util.command.parametric.ArgumentStack;
-import com.sk89q.worldedit.util.command.parametric.BindingBehavior;
-import com.sk89q.worldedit.util.command.parametric.BindingHelper;
-import com.sk89q.worldedit.util.command.parametric.BindingMatch;
-import com.sk89q.worldedit.util.command.parametric.ParameterException;
+import com.sk89q.worldedit.util.command.parametric.*;
 import com.sk89q.worldedit.world.World;
+
+import javax.annotation.Nullable;
 import java.awt.image.BufferedImage;
 import java.lang.annotation.Annotation;
-import javax.annotation.Nullable;
 
 public class FawePrimitiveBinding extends BindingHelper {
     @BindingMatch(type = {Long.class, long.class},
@@ -69,6 +62,7 @@ public class FawePrimitiveBinding extends BindingHelper {
             }
         }
     }
+
     @BindingMatch(
             type = {BufferedImage.class},
             behavior = BindingBehavior.CONSUMES,
@@ -176,7 +170,7 @@ public class FawePrimitiveBinding extends BindingHelper {
         return v;
     }
 
-    @BindingMatch(type = { Expression.class },
+    @BindingMatch(type = {Expression.class},
             behavior = BindingBehavior.CONSUMES,
             consumedCount = 1)
     public Expression getExpression(ArgumentStack context) throws ParameterException, ExpressionException {

@@ -21,20 +21,14 @@ package com.sk89q.worldedit.regions;
 
 import com.boydti.fawe.config.Settings;
 import com.boydti.fawe.object.collection.LocalBlockVectorSet;
-import com.sk89q.worldedit.BlockVector;
-import com.sk89q.worldedit.LocalWorld;
-import com.sk89q.worldedit.MutableBlockVector;
-import com.sk89q.worldedit.MutableBlockVector2D;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.Vector2D;
-import com.sk89q.worldedit.WorldVector;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.world.World;
 import com.sk89q.worldedit.world.storage.ChunkStore;
+
 import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
-
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;

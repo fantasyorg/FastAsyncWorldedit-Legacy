@@ -20,6 +20,7 @@
 package com.sk89q.worldedit.blocks;
 
 import com.sk89q.jnbt.CompoundTag;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,7 +50,7 @@ public class BaseItem {
     /**
      * Construct the object.
      *
-     * @param id ID of the item
+     * @param id   ID of the item
      * @param data data value of the item
      */
     public BaseItem(int id, short data) {

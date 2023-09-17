@@ -19,6 +19,8 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Type;
@@ -29,7 +31,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import javax.imageio.ImageIO;
 
 public class TextureUtil implements TextureHolder {
     public static TextureUtil fromClipboard(Clipboard clipboard) throws FileNotFoundException {
@@ -749,7 +750,8 @@ public class TextureUtil implements TextureHolder {
                                 }
 
                                 validMixBiomeColors = new int[layerColors.size()];
-                                for (int i = 0; i < layerColors.size(); i++) validMixBiomeColors[i] = (int) layerColors.getLong(i);
+                                for (int i = 0; i < layerColors.size(); i++)
+                                    validMixBiomeColors[i] = (int) layerColors.getLong(i);
                                 validMixBiomeIds = layerIds.toLongArray();
                             }
                         }
@@ -978,7 +980,8 @@ public class TextureUtil implements TextureHolder {
                         names.add(name.replaceAll("leaves_", "leaves2_"));
                         break;
                     case "mushroom":
-                        if (name.contains("mushroom_block_skin_")) names.add(name.replaceAll("mushroom_block_skin_", "mushroom_block_"));
+                        if (name.contains("mushroom_block_skin_"))
+                            names.add(name.replaceAll("mushroom_block_skin_", "mushroom_block_"));
                         if (name.contains("_red")) name = "red_" + name.replaceAll("_red", "");
                         if (name.contains("_brown")) name = "brown_" + name.replaceAll("_brown", "");
                         if (!name.contains("stem")) name = name.replaceAll("skin", "all_outside");

@@ -67,7 +67,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-
 import static com.boydti.fawe.util.ReflectionUtils.as;
 
 /**
@@ -219,7 +218,7 @@ public class SchematicCommands extends MethodCommands {
                 if (filename.startsWith("#")) {
                     String[] extensions;
                     if (format != null) {
-                        extensions = new String[] { format.getExtension() };
+                        extensions = new String[]{format.getExtension()};
                     } else {
                         extensions = ClipboardFormats.getFileExtensionArray();
                     }
@@ -548,7 +547,8 @@ public class SchematicCommands extends MethodCommands {
                         if (!MainUtil.isInSubDirectory(dir, file)) {
                             throw new RuntimeException(new CommandException("Invalid path"));
                         }
-                    } catch (IOException ignore) {}
+                    } catch (IOException ignore) {
+                    }
                 } else if (uriStr.startsWith("http://") || uriStr.startsWith("https://")) {
                     // url
                     color = "&9";
@@ -565,7 +565,8 @@ public class SchematicCommands extends MethodCommands {
                         msg.text("&7[&a+&7]").command(loadMulti + " " + relFilePath).tooltip("Add to clipboard");
                     }
                     if (!isDir) msg.text("&7[&cX&7]").suggest("/" + delete + " " + relFilePath).tooltip("Delete");
-                    else if (hasShow) msg.text("&7[&3O&7]").command(showCmd + " " + args.getJoinedStrings(0) + " " + relFilePath).tooltip("Show");
+                    else if (hasShow)
+                        msg.text("&7[&3O&7]").command(showCmd + " " + args.getJoinedStrings(0) + " " + relFilePath).tooltip("Show");
                     msg.text(color + name);
                     if (isDir) {
                         msg.command(list + " " + relFilePath).tooltip("List");

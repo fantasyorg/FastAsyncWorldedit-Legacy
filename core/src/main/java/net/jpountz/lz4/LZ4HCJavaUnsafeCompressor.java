@@ -2,12 +2,12 @@
 
 package net.jpountz.lz4;
 
-import java.nio.ByteBuffer;
-import java.util.Arrays;
 import net.jpountz.lz4.LZ4Utils.Match;
 import net.jpountz.util.ByteBufferUtils;
 import net.jpountz.util.UnsafeUtils;
 
+import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 import static net.jpountz.lz4.LZ4Constants.*;
 import static net.jpountz.lz4.LZ4Utils.copyTo;

@@ -9,17 +9,7 @@ import com.boydti.fawe.object.io.FastByteArrayOutputStream;
 import com.boydti.fawe.object.io.PGZIPOutputStream;
 import com.boydti.fawe.util.ReflectionUtils;
 import com.google.common.io.ByteStreams;
-import com.sk89q.jnbt.ByteArrayTag;
-import com.sk89q.jnbt.CompoundTag;
-import com.sk89q.jnbt.DoubleTag;
-import com.sk89q.jnbt.FloatTag;
-import com.sk89q.jnbt.IntTag;
-import com.sk89q.jnbt.ListTag;
-import com.sk89q.jnbt.NBTConstants;
-import com.sk89q.jnbt.NBTOutputStream;
-import com.sk89q.jnbt.ShortTag;
-import com.sk89q.jnbt.StringTag;
-import com.sk89q.jnbt.Tag;
+import com.sk89q.jnbt.*;
 import com.sk89q.worldedit.MutableBlockVector;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.blocks.BaseBlock;
@@ -30,6 +20,7 @@ import com.sk89q.worldedit.extent.clipboard.Clipboard;
 import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.util.Location;
 import com.sk89q.worldedit.world.registry.WorldData;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataOutput;
 import java.io.IOException;
@@ -39,7 +30,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

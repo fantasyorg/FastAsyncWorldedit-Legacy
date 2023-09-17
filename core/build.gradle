@@ -1,5 +1,5 @@
 repositories {
-    flatDir {dirs 'lib'}
+    flatDir { dirs 'lib' }
 }
 dependencies {
     testImplementation 'junit:junit:4.13.1'
@@ -10,7 +10,7 @@ dependencies {
     implementation files("/lib/BlocksHub.jar")
     implementation 'com.github.luben:zstd-jni:1.5.5-5'
     implementation 'it.unimi.dsi:fastutil:8.5.12'
-    implementation(group: 'com.sk89q.worldedit', name: 'worldedit-core', version:'6.1.4-SNAPSHOT') {
+    implementation(group: 'com.sk89q.worldedit', name: 'worldedit-core', version: '6.1.4-SNAPSHOT') {
         exclude(module: 'bukkit-classloader-check')
     }
 }

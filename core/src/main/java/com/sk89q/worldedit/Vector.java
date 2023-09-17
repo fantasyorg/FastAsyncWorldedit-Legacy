@@ -21,9 +21,10 @@ package com.sk89q.worldedit;
 
 import com.boydti.fawe.util.MathMan;
 import com.sk89q.worldedit.math.transform.AffineTransform;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.Serializable;
-import javax.annotation.Nullable;
 
 /**
  * An immutable 3-dimensional vector.
@@ -879,7 +880,7 @@ public class Vector implements Comparable<Vector>, Serializable {
                 Math.max(v1.getZ(), v2.getZ())
         );
     }
-    
+
     /**
      * Gets the midpoint of two vectors.
      *

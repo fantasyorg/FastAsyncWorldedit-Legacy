@@ -21,7 +21,6 @@ package com.sk89q.worldedit.util.formatting.component;
 
 import com.sk89q.worldedit.util.formatting.StyledFragment;
 
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**

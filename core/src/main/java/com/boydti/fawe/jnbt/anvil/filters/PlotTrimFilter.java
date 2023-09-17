@@ -14,6 +14,7 @@ import com.intellectualcrafters.plot.object.Plot;
 import com.intellectualcrafters.plot.object.PlotArea;
 import com.intellectualcrafters.plot.util.expiry.ExpireManager;
 import com.sk89q.worldedit.world.World;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -171,8 +172,7 @@ public class PlotTrimFilter extends DeleteUninhabitedFilter {
                                         }
                                     }
                                 }
-                            }
-                            else if (!reference.idsEqual(chunk, false)) {
+                            } else if (!reference.idsEqual(chunk, false)) {
                                 return;
                             }
                             chunk.setDeleted(true);

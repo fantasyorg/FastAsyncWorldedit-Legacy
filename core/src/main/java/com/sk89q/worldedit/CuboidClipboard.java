@@ -37,14 +37,10 @@ import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.schematic.SchematicFormat;
 import com.sk89q.worldedit.util.Countable;
 import com.sk89q.worldedit.world.DataException;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

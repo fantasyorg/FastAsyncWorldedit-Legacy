@@ -8,13 +8,8 @@ import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.function.RegionFunction;
 import com.sk89q.worldedit.function.operation.Operation;
 import com.sk89q.worldedit.function.operation.RunContext;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class DFSVisitor implements Operation {

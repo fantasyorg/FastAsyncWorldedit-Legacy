@@ -29,8 +29,8 @@ import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.entity.Player;
 import com.sk89q.worldedit.scripting.RhinoCraftScriptEngine;
-import java.io.File;
 
+import java.io.File;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.sk89q.minecraft.util.commands.Logging.LogMode.ALL;

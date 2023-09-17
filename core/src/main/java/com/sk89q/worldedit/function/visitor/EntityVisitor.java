@@ -26,9 +26,9 @@ import com.sk89q.worldedit.function.EntityFunction;
 import com.sk89q.worldedit.function.operation.Operation;
 import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.function.operation.RunContext;
+
 import java.util.Iterator;
 import java.util.List;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

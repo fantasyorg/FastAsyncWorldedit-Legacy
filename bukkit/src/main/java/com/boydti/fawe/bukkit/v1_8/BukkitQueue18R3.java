@@ -6,52 +6,12 @@ import com.boydti.fawe.example.CharFaweChunk;
 import com.boydti.fawe.object.FaweChunk;
 import com.boydti.fawe.object.RegionWrapper;
 import com.boydti.fawe.object.RunnableVal;
-import com.boydti.fawe.util.MainUtil;
-import com.boydti.fawe.util.MathMan;
-import com.boydti.fawe.util.ReflectionUtils;
-import com.boydti.fawe.util.SetQueue;
-import com.boydti.fawe.util.TaskManager;
+import com.boydti.fawe.util.*;
 import com.sk89q.jnbt.CompoundTag;
 import com.sk89q.jnbt.StringTag;
 import com.sk89q.jnbt.Tag;
 import com.sk89q.worldedit.world.biome.BaseBiome;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import net.minecraft.server.v1_8_R3.Block;
-import net.minecraft.server.v1_8_R3.BlockPosition;
-import net.minecraft.server.v1_8_R3.Chunk;
-import net.minecraft.server.v1_8_R3.ChunkSection;
-import net.minecraft.server.v1_8_R3.Entity;
-import net.minecraft.server.v1_8_R3.EntityPlayer;
-import net.minecraft.server.v1_8_R3.EntitySlice;
-import net.minecraft.server.v1_8_R3.EntityTracker;
-import net.minecraft.server.v1_8_R3.EntityTypes;
-import net.minecraft.server.v1_8_R3.EnumDifficulty;
-import net.minecraft.server.v1_8_R3.EnumSkyBlock;
-import net.minecraft.server.v1_8_R3.IChunkProvider;
-import net.minecraft.server.v1_8_R3.LongHashMap;
-import net.minecraft.server.v1_8_R3.MinecraftServer;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import net.minecraft.server.v1_8_R3.NibbleArray;
-import net.minecraft.server.v1_8_R3.Packet;
-import net.minecraft.server.v1_8_R3.PacketPlayOutMapChunk;
-import net.minecraft.server.v1_8_R3.PlayerChunkMap;
-import net.minecraft.server.v1_8_R3.ServerNBTManager;
-import net.minecraft.server.v1_8_R3.TileEntity;
-import net.minecraft.server.v1_8_R3.WorldData;
-import net.minecraft.server.v1_8_R3.WorldManager;
-import net.minecraft.server.v1_8_R3.WorldServer;
-import net.minecraft.server.v1_8_R3.WorldSettings;
-import net.minecraft.server.v1_8_R3.WorldType;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -62,6 +22,11 @@ import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.*;
 
 public class BukkitQueue18R3 extends BukkitQueue_0<net.minecraft.server.v1_8_R3.Chunk, ChunkSection[], ChunkSection> {
 
@@ -100,8 +65,8 @@ public class BukkitQueue18R3 extends BukkitQueue_0<net.minecraft.server.v1_8_R3.
             fieldBiomeCache.setAccessible(true);
             fieldBiomes2 = net.minecraft.server.v1_8_R3.WorldChunkManager.class.getDeclaredField("e");
             fieldBiomes2.setAccessible(true);
-            fieldGenLayer1 = net.minecraft.server.v1_8_R3.WorldChunkManager.class.getDeclaredField("b") ;
-            fieldGenLayer2 = net.minecraft.server.v1_8_R3.WorldChunkManager.class.getDeclaredField("c") ;
+            fieldGenLayer1 = net.minecraft.server.v1_8_R3.WorldChunkManager.class.getDeclaredField("b");
+            fieldGenLayer2 = net.minecraft.server.v1_8_R3.WorldChunkManager.class.getDeclaredField("c");
             fieldGenLayer1.setAccessible(true);
             fieldGenLayer2.setAccessible(true);
         } catch (Throwable e) {
@@ -110,7 +75,8 @@ public class BukkitQueue18R3 extends BukkitQueue_0<net.minecraft.server.v1_8_R3.
         try {
             isDirty = ChunkSection.class.getDeclaredField("isDirty");
             isDirty.setAccessible(true);
-        } catch (Throwable ignore) {}
+        } catch (Throwable ignore) {
+        }
     }
 
     public BukkitQueue18R3(final com.sk89q.worldedit.world.World world) {
@@ -612,7 +578,7 @@ public class BukkitQueue18R3 extends BukkitQueue_0<net.minecraft.server.v1_8_R3.
             worldSettings = null;
         }
         worlddata.checkName(name);
-        final WorldServer internal = (WorldServer)new WorldServer(console, sdm, worlddata, dimension, console.methodProfiler, creator.environment(), generator).b();
+        final WorldServer internal = (WorldServer) new WorldServer(console, sdm, worlddata, dimension, console.methodProfiler, creator.environment(), generator).b();
         startSet(true); // Temporarily allow async chunk load since the world isn't added yet
         if (worldSettings != null) {
             internal.a(worldSettings);

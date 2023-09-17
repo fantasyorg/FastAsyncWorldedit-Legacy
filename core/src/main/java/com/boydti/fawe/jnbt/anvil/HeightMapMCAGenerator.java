@@ -15,8 +15,8 @@ import com.boydti.fawe.util.*;
 import com.boydti.fawe.util.image.Drawable;
 import com.boydti.fawe.util.image.ImageViewer;
 import com.sk89q.jnbt.CompoundTag;
-import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.blocks.BaseItemStack;
 import com.sk89q.worldedit.blocks.BlockID;
@@ -33,13 +33,14 @@ import com.sk89q.worldedit.util.TreeGenerator;
 import com.sk89q.worldedit.world.World;
 import com.sk89q.worldedit.world.biome.BaseBiome;
 import com.sk89q.worldedit.world.registry.WorldData;
+
+import javax.annotation.Nullable;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.*;
-import javax.annotation.Nullable;
 
 public class HeightMapMCAGenerator extends MCAWriter implements StreamChange, Drawable, VirtualWorld {
     private final MutableBlockVector mutable = new MutableBlockVector();
@@ -116,7 +117,9 @@ public class HeightMapMCAGenerator extends MCAWriter implements StreamChange, Dr
                 }
             }
             resetPrimtives();
-        } catch (Throwable neverHappens) { neverHappens.printStackTrace(); }
+        } catch (Throwable neverHappens) {
+            neverHappens.printStackTrace();
+        }
 
         blocks.flushChanges(out);
     }
@@ -148,7 +151,9 @@ public class HeightMapMCAGenerator extends MCAWriter implements StreamChange, Dr
                 }
             }
             resetPrimtives();
-        } catch (Throwable neverHappens) { neverHappens.printStackTrace(); }
+        } catch (Throwable neverHappens) {
+            neverHappens.printStackTrace();
+        }
         blocks.undoChanges(in);
     }
 
@@ -168,7 +173,9 @@ public class HeightMapMCAGenerator extends MCAWriter implements StreamChange, Dr
                 }
             }
             resetPrimtives();
-        } catch (Throwable neverHappens) { neverHappens.printStackTrace(); }
+        } catch (Throwable neverHappens) {
+            neverHappens.printStackTrace();
+        }
 
         blocks.clearChanges(); // blocks.redoChanges(in); Unsupported
     }
@@ -543,13 +550,13 @@ public class HeightMapMCAGenerator extends MCAWriter implements StreamChange, Dr
     }
 
     public void addCaves() throws WorldEditException {
-        CuboidRegion region = new CuboidRegion(new Vector(0, 0, 0), new Vector(getWidth() -1, 255, getLength() -1));
+        CuboidRegion region = new CuboidRegion(new Vector(0, 0, 0), new Vector(getWidth() - 1, 255, getLength() - 1));
         addCaves(region);
     }
 
     @Deprecated
     public void addSchems(Mask mask, WorldData worldData, List<ClipboardHolder> clipboards, int rarity, boolean rotate) throws WorldEditException {
-        CuboidRegion region = new CuboidRegion(new Vector(0, 0, 0), new Vector(getWidth() -1, 255, getLength() -1));
+        CuboidRegion region = new CuboidRegion(new Vector(0, 0, 0), new Vector(getWidth() - 1, 255, getLength() - 1));
         addSchems(region, mask, worldData, clipboards, rarity, rotate);
     }
 
@@ -654,12 +661,12 @@ public class HeightMapMCAGenerator extends MCAWriter implements StreamChange, Dr
     }
 
     public void addOre(Mask mask, Pattern material, int size, int frequency, int rarity, int minY, int maxY) throws WorldEditException {
-        CuboidRegion region = new CuboidRegion(new Vector(0, 0, 0), new Vector(getWidth() -1, 255, getLength() -1));
+        CuboidRegion region = new CuboidRegion(new Vector(0, 0, 0), new Vector(getWidth() - 1, 255, getLength() - 1));
         addOre(region, mask, material, size, frequency, rarity, minY, maxY);
     }
 
     public void addDefaultOres(Mask mask) throws WorldEditException {
-        addOres(new CuboidRegion(new Vector(0, 0, 0), new Vector(getWidth() -1, 255, getLength() -1)), mask);
+        addOres(new CuboidRegion(new Vector(0, 0, 0), new Vector(getWidth() - 1, 255, getLength() - 1)), mask);
     }
 
     @Override
@@ -1129,7 +1136,8 @@ public class HeightMapMCAGenerator extends MCAWriter implements StreamChange, Dr
                     }
                     if (imgMask != null) {
                         int height = imgMask.getRGB(x, z) & 0xFF;
-                        if (height != 255 && (height <= 0 || !whiteOnly || PseudoRandom.random.nextInt(256) > height)) continue;
+                        if (height != 255 && (height <= 0 || !whiteOnly || PseudoRandom.random.nextInt(256) > height))
+                            continue;
                     }
                     int color = img.getRGB(x, z);
                     if (textureUtil.getIsBlockCloserThanBiome(buffer, color, primtives.biomePriority)) {

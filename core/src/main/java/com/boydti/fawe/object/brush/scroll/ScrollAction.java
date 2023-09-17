@@ -12,6 +12,7 @@ import com.sk89q.worldedit.extension.input.ParserContext;
 import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormat;
 import com.sk89q.worldedit.function.mask.Mask;
 import com.sk89q.worldedit.function.pattern.Pattern;
+
 import java.io.IOException;
 
 public abstract class ScrollAction implements ScrollTool {

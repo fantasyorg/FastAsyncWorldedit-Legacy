@@ -16,11 +16,12 @@ import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.util.TreeGenerator;
 import com.sk89q.worldedit.world.World;
 import com.sk89q.worldedit.world.biome.BaseBiome;
+
+import javax.annotation.Nullable;
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
-import javax.annotation.Nullable;
 
 public abstract class ImmutableVirtualWorld implements VirtualWorld {
     @Override

@@ -5,11 +5,8 @@ import com.boydti.fawe.config.Settings;
 import com.boydti.fawe.object.FaweQueue;
 import com.boydti.fawe.wrappers.WorldWrapper;
 import com.sk89q.worldedit.world.World;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
+
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ForkJoinPool;

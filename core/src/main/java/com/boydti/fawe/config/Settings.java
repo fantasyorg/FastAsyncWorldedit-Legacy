@@ -2,8 +2,12 @@ package com.boydti.fawe.config;
 
 import com.boydti.fawe.object.FaweLimit;
 import com.boydti.fawe.object.FawePlayer;
+
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
 public class Settings extends Config {
     @Ignore
@@ -381,8 +385,8 @@ public class Settings extends Config {
 
     public static class WEB {
         @Comment({
-            "Should download urls be shortened?",
-             " - Links are less secure as they could be brute forced"
+                "Should download urls be shortened?",
+                " - Links are less secure as they could be brute forced"
         })
         public boolean SHORTEN_URLS = false;
         @Comment({
@@ -499,7 +503,8 @@ public class Settings extends Config {
                 limit.SPEED_REDUCTION = Math.min(limit.SPEED_REDUCTION, newLimit.SPEED_REDUCTION);
                 limit.FAST_PLACEMENT |= newLimit.FAST_PLACEMENT;
                 limit.CONFIRM_LARGE &= newLimit.CONFIRM_LARGE;
-                if (limit.STRIP_NBT == null) limit.STRIP_NBT = newLimit.STRIP_NBT.isEmpty() ? Collections.emptySet() : new HashSet<>(newLimit.STRIP_NBT);
+                if (limit.STRIP_NBT == null)
+                    limit.STRIP_NBT = newLimit.STRIP_NBT.isEmpty() ? Collections.emptySet() : new HashSet<>(newLimit.STRIP_NBT);
                 else if (limit.STRIP_NBT.isEmpty() || newLimit.STRIP_NBT.isEmpty()) {
                     limit.STRIP_NBT = Collections.emptySet();
                 } else {

@@ -12,6 +12,7 @@ import com.boydti.fawe.util.MainUtil;
 import com.boydti.fawe.util.MathMan;
 import com.boydti.fawe.util.ReflectionUtils;
 import com.sk89q.jnbt.*;
+
 import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -854,6 +855,7 @@ public class MCAChunk extends FaweChunk<Void> {
 
     /**
      * Check if the ids match the ids in the other chunk
+     *
      * @param other
      * @param matchNullToAir
      * @return

@@ -2,8 +2,8 @@ package com.sk89q.worldedit.function.mask;
 
 import com.sk89q.worldedit.MutableBlockVector;
 import com.sk89q.worldedit.Vector;
-import javax.annotation.Nullable;
 
+import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

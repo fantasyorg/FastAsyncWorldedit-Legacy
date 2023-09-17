@@ -12,11 +12,7 @@ import com.boydti.fawe.util.MathMan;
 import com.boydti.fawe.util.MemUtil;
 import com.boydti.fawe.util.SetQueue;
 import com.sk89q.jnbt.CompoundTag;
-import com.sk89q.worldedit.EditSession;
-import com.sk89q.worldedit.MutableBlockVector;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.Vector2D;
-import com.sk89q.worldedit.WorldEditException;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.blocks.BlockMaterial;
 import com.sk89q.worldedit.extent.Extent;
@@ -24,11 +20,12 @@ import com.sk89q.worldedit.regions.CuboidRegion;
 import com.sk89q.worldedit.world.World;
 import com.sk89q.worldedit.world.biome.BaseBiome;
 import com.sk89q.worldedit.world.registry.BundledBlockData;
+
+import javax.annotation.Nullable;
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
-import javax.annotation.Nullable;
 
 /**
  * A queue based Extent capable of queing chunk and region changes
@@ -120,7 +117,6 @@ public interface FaweQueue extends HasFaweQueue, Extent {
     }
 
 
-
     default void addEditSession(EditSession session) {
         if (session == null) {
             return;
@@ -148,7 +144,8 @@ public interface FaweQueue extends HasFaweQueue, Extent {
         return false;
     }
 
-    default void optimize() {}
+    default void optimize() {
+    }
 
     default int setBlocks(CuboidRegion cuboid, final int id, final int data) {
         RegionWrapper current = new RegionWrapper(cuboid.getMinimumPoint(), cuboid.getMaximumPoint());

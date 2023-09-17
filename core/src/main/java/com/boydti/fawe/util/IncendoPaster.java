@@ -156,7 +156,7 @@ public final class IncendoPaster {
          * Construct a new paste file
          *
          * @param fileName File name, cannot be empty, nor null
-         * @param content File content, cannot be empty, nor null
+         * @param content  File content, cannot be empty, nor null
          */
         public PasteFile(final String fileName, final String content) {
             if (fileName == null || fileName.isEmpty()) {

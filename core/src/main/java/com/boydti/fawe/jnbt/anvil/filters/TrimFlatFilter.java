@@ -58,7 +58,7 @@ public class TrimFlatFilter extends MCAFilterCounter {
 
     @Override
     public void finishFile(MCAFile file, MutableLong cache) {
-        boolean[] deleteFile = { true };
+        boolean[] deleteFile = {true};
         file.forEachCachedChunk(new RunnableVal<MCAChunk>() {
             @Override
             public void run(MCAChunk value) {

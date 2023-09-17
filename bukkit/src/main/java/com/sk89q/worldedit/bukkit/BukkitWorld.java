@@ -22,8 +22,8 @@ package com.sk89q.worldedit.bukkit;
 import com.boydti.fawe.Fawe;
 import com.boydti.fawe.bukkit.FaweBukkit;
 import com.boydti.fawe.bukkit.v0.BukkitQueue_0;
-import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.blocks.BaseItemStack;
 import com.sk89q.worldedit.blocks.LazyBlock;
@@ -34,11 +34,6 @@ import com.sk89q.worldedit.util.Location;
 import com.sk89q.worldedit.util.TreeGenerator;
 import com.sk89q.worldedit.world.biome.BaseBiome;
 import com.sk89q.worldedit.world.registry.WorldData;
-import java.lang.ref.WeakReference;
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.logging.Level;
-import javax.annotation.Nullable;
 import org.bukkit.*;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
@@ -50,15 +45,18 @@ import org.bukkit.inventory.DoubleChestInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nullable;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.logging.Level;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-
-
-import com.sk89q.worldedit.util.Location;
 
 public class BukkitWorld extends LocalWorld {
 
     private static final Map<Integer, Effect> effects = new HashMap<Integer, Effect>();
+
     static {
         for (Effect effect : Effect.values()) {
             effects.put(effect.getId(), effect);
@@ -138,7 +136,9 @@ public class BukkitWorld extends LocalWorld {
                     }
                 }
         }
-    };
+    }
+
+    ;
 
     @Nullable
     @Override
@@ -188,6 +188,7 @@ public class BukkitWorld extends LocalWorld {
     }
 
     private static Method ADAPT_ENTITY;
+
     static {
         try {
             Class<?> clazz = Class.forName("com.sk89q.worldedit.bukkit.BukkitAdapter");

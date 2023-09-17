@@ -1,6 +1,5 @@
 package com.boydti.fawe.bukkit.v1_12;
 
-import com.boydti.fawe.Fawe;
 import com.boydti.fawe.FaweCache;
 import com.boydti.fawe.bukkit.BukkitPlayer;
 import com.boydti.fawe.bukkit.v0.BukkitQueue_0;
@@ -26,14 +25,6 @@ import com.sk89q.jnbt.Tag;
 import com.sk89q.worldedit.world.biome.BaseBiome;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.concurrent.atomic.LongAdder;
 import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -47,6 +38,15 @@ import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.concurrent.atomic.LongAdder;
 
 public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R1.Chunk, ChunkSection[], ChunkSection> {
 
@@ -96,8 +96,8 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
             fieldBiomeCache.setAccessible(true);
             fieldBiomes2 = WorldChunkManager.class.getDeclaredField("e");
             fieldBiomes2.setAccessible(true);
-            fieldGenLayer1 = WorldChunkManager.class.getDeclaredField("b") ;
-            fieldGenLayer2 = WorldChunkManager.class.getDeclaredField("c") ;
+            fieldGenLayer1 = WorldChunkManager.class.getDeclaredField("b");
+            fieldGenLayer2 = WorldChunkManager.class.getDeclaredField("c");
             fieldGenLayer1.setAccessible(true);
             fieldGenLayer2.setAccessible(true);
 
@@ -116,7 +116,8 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
             try {
                 methodTileEntityLoad = TileEntity.class.getDeclaredMethod("a", NBTTagCompound.class);
                 methodTileEntityLoad.setAccessible(true);
-            } catch (Throwable ignore) {}
+            } catch (Throwable ignore) {
+            }
 
             Field fieldAir = DataPaletteBlock.class.getDeclaredField("a");
             fieldAir.setAccessible(true);
@@ -131,14 +132,16 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
             for (int i = 0; i < IBD_CACHE.length; i++) {
                 try {
                     IBD_CACHE[i] = Block.getById(i >> 4).fromLegacyData(i & 0xF);
-                } catch (Throwable ignore) {}
+                } catch (Throwable ignore) {
+                }
             }
         } catch (Throwable e) {
             e.printStackTrace();
         }
         try {
             methodSaveChunk = ChunkProviderServer.class.getDeclaredMethod("saveChunk", net.minecraft.server.v1_12_R1.Chunk.class, boolean.class);
-        } catch (NoSuchMethodError | NoSuchMethodException ignore) { }
+        } catch (NoSuchMethodError | NoSuchMethodException ignore) {
+        }
     }
 
     public BukkitQueue_1_12(final com.sk89q.worldedit.world.World world) {
@@ -463,7 +466,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
             worldSettings = null;
         }
         worlddata.checkName(name);
-        final WorldServer internal = (WorldServer)new WorldServer(console, sdm, worlddata, dimension, console.methodProfiler, creator.environment(), generator).b();
+        final WorldServer internal = (WorldServer) new WorldServer(console, sdm, worlddata, dimension, console.methodProfiler, creator.environment(), generator).b();
         startSet(true); // Temporarily allow async chunk load since the world isn't added yet
         if (worldSettings != null) {
             internal.a(worldSettings);
@@ -609,7 +612,8 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
             });
             packet.a(buffer);
             for (int i = 0; i < players.length; i++) {
-                if (watchingArr[i]) ((CraftPlayer) ((BukkitPlayer) players[i]).parent).getHandle().playerConnection.sendPacket(packet);
+                if (watchingArr[i])
+                    ((CraftPlayer) ((BukkitPlayer) players[i]).parent).getHandle().playerConnection.sendPacket(packet);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -693,7 +697,8 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
                     return true;
                 }
             }
-        } catch (Throwable ignore) {}
+        } catch (Throwable ignore) {
+        }
         return false;
     }
 

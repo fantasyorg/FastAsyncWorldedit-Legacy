@@ -22,9 +22,9 @@
 package com.sk89q.worldedit.math.interpolation;
 
 import com.sk89q.worldedit.Vector;
+
 import java.util.Collections;
 import java.util.List;
-
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -120,7 +120,7 @@ public class KochanekBartelsInterpolation implements Interpolation {
      * Retrieves a node. Indexes are clamped to the valid range.
      *
      * @param index node index to retrieve
-     * @return nodes[clamp(0, nodes.length-1)]
+     * @return nodes[clamp(0, nodes.length - 1)]
      */
     private Vector retrieve(int index) {
         if (index < 0)

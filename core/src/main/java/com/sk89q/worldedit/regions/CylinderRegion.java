@@ -19,11 +19,7 @@
 
 package com.sk89q.worldedit.regions;
 
-import com.sk89q.worldedit.BlockVector;
-import com.sk89q.worldedit.BlockVector2D;
-import com.sk89q.worldedit.LocalWorld;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.Vector2D;
+import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.math.geom.Polygons;
 import com.sk89q.worldedit.regions.iterator.FlatRegion3DIterator;
@@ -61,6 +57,7 @@ public class CylinderRegion extends AbstractRegion implements FlatRegion {
     public CylinderRegion(LocalWorld world) {
         this((World) world);
     }
+
     /**
      * Construct the region.
      *
@@ -79,11 +76,11 @@ public class CylinderRegion extends AbstractRegion implements FlatRegion {
     /**
      * Construct the region.
      *
-     * @param world the world
+     * @param world  the world
      * @param center the center position
      * @param radius the radius along the X and Z axes
-     * @param minY the minimum Y, inclusive
-     * @param maxY the maximum Y, inclusive
+     * @param minY   the minimum Y, inclusive
+     * @param maxY   the maximum Y, inclusive
      */
     public CylinderRegion(World world, Vector center, Vector2D radius, int minY, int maxY) {
         super(world);
@@ -99,8 +96,8 @@ public class CylinderRegion extends AbstractRegion implements FlatRegion {
      *
      * @param center the center position
      * @param radius the radius along the X and Z axes
-     * @param minY the minimum Y, inclusive
-     * @param maxY the maximum Y, inclusive
+     * @param minY   the minimum Y, inclusive
+     * @param maxY   the maximum Y, inclusive
      */
     public CylinderRegion(Vector center, Vector2D radius, int minY, int maxY) {
         super(null);

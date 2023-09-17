@@ -4,10 +4,10 @@ import com.boydti.fawe.object.FaweInputStream;
 import com.boydti.fawe.object.FaweOutputStream;
 import com.boydti.fawe.object.io.serialize.Serialize;
 import com.boydti.fawe.util.MainUtil;
+
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Arrays;
-
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -15,6 +15,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Records changes made through the {@link #setByte(int, byte)} or {@link #setChar(int, char)} method<br/>
  * If you are editing the raw data, use {@link #record(Runnable)}
+ *
  * @param <T>
  */
 public final class DifferentialArray<T> implements DifferentialCollection<T> {
@@ -24,7 +25,8 @@ public final class DifferentialArray<T> implements DifferentialCollection<T> {
     private final char[] dataChars;
     private char[] changesChars;
 
-    @Serialize private final T data;
+    @Serialize
+    private final T data;
 
     private T changes;
 

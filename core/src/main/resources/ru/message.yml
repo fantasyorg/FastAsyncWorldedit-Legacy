@@ -270,7 +270,7 @@ cancel:
   worldedit_cancel_reason_confirm: '&7Ваш выбор большой (&c%s0 &7-> &c%s1&7, содержащий &c%s3&7 блоки). использование &c//confirm &7выполнить &c%s2'
   worldedit_cancel_reason_outside_level: внешний мир
   worldedit_cancel_reason_outside_region: Вне допустимой области (обход с /wea, или отключить `region-restrictions` в config.yml)
-history: {}
+history: { }
 navigation:
   ascend_fail: Свободного места над вами не найдено.
   ascended_plural: Вы поднялись на %s0 уровень(ней).

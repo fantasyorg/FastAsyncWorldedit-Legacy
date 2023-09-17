@@ -5,6 +5,7 @@ import com.boydti.fawe.util.MainUtil;
 import com.google.common.io.Resources;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -20,7 +21,10 @@ public class WikiScraper {
         ENTITY_MAPPINGS("https://minecraft.gamepedia.com/index.php?title=Bedrock_Edition_data_values&action=edit&section=4"),
         ;
         public final String url;
-        Wiki(String url) {this.url = url;}
+
+        Wiki(String url) {
+            this.url = url;
+        }
     }
 
     private Map<Wiki, Map<String, Integer>> cache = new HashMap<>();

@@ -11,14 +11,11 @@ import com.boydti.fawe.util.MainUtil;
 import com.boydti.fawe.util.TaskManager;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.world.World;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
