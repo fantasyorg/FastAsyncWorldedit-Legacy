@@ -1,6 +1,11 @@
+plugins {
+    id 'java'
+}
+
 repositories {
     flatDir { dirs 'lib' }
 }
+
 dependencies {
     testImplementation 'junit:junit:4.13.1'
     implementation 'org.yaml:snakeyaml:1.33'

@@ -77,7 +77,7 @@ public class BukkitChunk_1_8 extends CharFaweChunk<Chunk, BukkitQueue18R3> {
             // Sections
             ChunkSection[] sections = nmsChunk.getSections();
             Map<BlockPosition, TileEntity> tiles = nmsChunk.getTileEntities();
-            Collection<Entity>[] entities = nmsChunk.getEntitySlices();
+            List<List<Entity>> entities = nmsChunk.getEntitySlices();
             // Set heightmap
             getParent().setHeightMap(this, heightMap);
             // Remove entities
@@ -86,7 +86,7 @@ public class BukkitChunk_1_8 extends CharFaweChunk<Chunk, BukkitQueue18R3> {
                 if (count == 0 || getParent().getSettings().EXPERIMENTAL.KEEP_ENTITIES_IN_BLOCKS) {
                     continue;
                 } else if (count >= 4096) {
-                    Collection<Entity> ents = entities[i];
+                    List<Entity> ents = entities.get(i);
                     if (!ents.isEmpty()) {
                         synchronized (BukkitQueue_0.class) {
                             Iterator<Entity> iter = ents.iterator();
@@ -101,10 +101,10 @@ public class BukkitChunk_1_8 extends CharFaweChunk<Chunk, BukkitQueue18R3> {
                         }
                     }
                 } else {
-                    Collection<Entity> ents = entities[i];
+                    Collection<Entity> ents = entities.get(i);
                     if (!ents.isEmpty()) {
                         char[] array = this.getIdArray(i);
-                        if (array == null || entities[i] == null || entities[i].isEmpty()) continue;
+                        if (array == null || entities.get(i) == null || entities.get(i).isEmpty()) continue;
                         Entity[] entsArr = ents.toArray(new Entity[ents.size()]);
                         synchronized (BukkitQueue_0.class) {
                             for (Entity entity : entsArr) {
@@ -126,8 +126,8 @@ public class BukkitChunk_1_8 extends CharFaweChunk<Chunk, BukkitQueue18R3> {
             HashSet<UUID> entsToRemove = this.getEntityRemoves();
             if (!entsToRemove.isEmpty()) {
                 synchronized (BukkitQueue_0.class) {
-                    for (int i = 0; i < entities.length; i++) {
-                        Collection<Entity> ents = entities[i];
+                    for (int i = 0; i < entities.size(); i++) {
+                        Collection<Entity> ents = entities.get(i);
                         if (ents.isEmpty()) {
                             Entity[] entsArr = ents.toArray(new Entity[ents.size()]);
                             for (Entity entity : entsArr) {
@@ -177,7 +177,7 @@ public class BukkitChunk_1_8 extends CharFaweChunk<Chunk, BukkitQueue18R3> {
             }
             // Run change task if applicable
             if (getParent().getChangeTask() != null) {
-                CharFaweChunk previous = getParent().getPrevious(this, sections, tiles, entities, createdEntities, false);
+                CharFaweChunk previous = getParent().getPrevious(this, sections, tiles, convertToListArray(entities), createdEntities, false);
                 getParent().getChangeTask().run(previous, this);
             }
             // Set blocks
@@ -314,5 +314,13 @@ public class BukkitChunk_1_8 extends CharFaweChunk<Chunk, BukkitQueue18R3> {
             MainUtil.handleError(e);
         }
         return this;
+    }
+    @SuppressWarnings("unchecked")
+    private static <T> Collection<T>[] convertToListArray(List<List<T>> listList) {
+        Collection<T>[] array = new Collection[listList.size()];
+        for (int i = 0; i < listList.size(); i++) {
+            array[i] = listList.get(i);
+        }
+        return array;
     }
 }

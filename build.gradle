@@ -5,13 +5,7 @@ buildscript {
         maven { url = "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:6.1.0'
-        classpath 'org.ajoberstar:grgit:1.7.0'
-    }
-    configurations.all {
-        resolutionStrategy {
-            force 'org.ow2.asm:asm:6.0_BETA'
-        }
+        classpath 'com.github.johnrengelman:shadow:8.1.1'
     }
 }
 
@@ -20,7 +14,10 @@ task setupCIWorkspace {
 }
 
 apply plugin: 'java'
-clean { delete "target" }
+
+clean {
+    delete "target"
+}
 
 group = 'com.boydti.fawe'
 
@@ -28,6 +25,7 @@ def revision = ""
 def buildNumber = ""
 def semver = ""
 def date = ""
+
 ext {
     try {
         git = org.ajoberstar.grgit.Grgit.open(file(".git"))
@@ -66,10 +64,11 @@ ext {
             patch += patchCount;
             parents = commit.getParentIds()
         }
+
         buildNumber = "-${index}"
         semver = "-${major}.${minor}.${patch}"
-    } catch (Throwable ignore) {
-        revision = "unknown";
+    } catch (Exception ignore) {
+        revision = "unknown"
     }
 }
 
@@ -80,7 +79,6 @@ if (project.hasProperty("lzNoVersion")) { // gradle build -PlzNoVersion
 description = """FastAsyncWorldEdit"""
 
 subprojects {
-
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'idea'
@@ -111,8 +109,10 @@ subprojects {
         maven { url "https://repo.papermc.io/repository/maven-public/" }
         maven { url "https://jitpack.io" }
         maven { url "https://repo.codemc.org/repository/maven-public" }
+        maven {url "https://nexus.redefantasy.digital/repository/maven-snapshots/"}
     }
 }
+
 task aggregatedJavadocs(type: Javadoc, description: 'Generate javadocs from all child projects as if it was a single project', group: 'Documentation') {
     destinationDir = file("./docs/javadoc")
     title = "$project.name $version API"

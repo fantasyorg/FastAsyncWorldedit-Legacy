@@ -500,8 +500,8 @@ public class BukkitQueue18R3 extends BukkitQueue_0<net.minecraft.server.v1_8_R3.
     }
 
     public boolean hasEntities(net.minecraft.server.v1_8_R3.Chunk nmsChunk) {
-        for (int i = 0; i < nmsChunk.entitySlices.length; i++) {
-            List<Entity> slice = nmsChunk.entitySlices[i];
+        for (int i = 0; i < nmsChunk.entitySlices.size(); i++) {
+            List<Entity> slice = nmsChunk.entitySlices.get(i);
             if (slice != null && !slice.isEmpty()) {
                 return true;
             }
@@ -687,12 +687,12 @@ public class BukkitQueue18R3 extends BukkitQueue_0<net.minecraft.server.v1_8_R3.
     @Override
     public void relightBlock(int x, int y, int z) {
         pos.c(x, y, z);
-        nmsWorld.c(EnumSkyBlock.BLOCK, pos);
+        nmsWorld.updateLight(EnumSkyBlock.BLOCK, pos);
     }
 
     @Override
     public void relightSky(int x, int y, int z) {
         pos.c(x, y, z);
-        nmsWorld.c(EnumSkyBlock.SKY, pos);
+        nmsWorld.updateLight(EnumSkyBlock.SKY, pos);
     }
 }
