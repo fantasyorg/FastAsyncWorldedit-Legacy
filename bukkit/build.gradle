@@ -9,32 +9,34 @@ repositories {
 dependencies {
     implementation project(':core')
     implementation 'com.sk89q:worldguard:6.0.0-SNAPSHOT'
-    implementation('com.destroystokyo.paper:paper-api:1.12-R0.1-SNAPSHOT') {
+    compileOnly('com.destroystokyo.paper:paper-api:1.12-R0.1-SNAPSHOT') {
         exclude group: 'net.md-5'
     }
-    implementation files('../core/lib/server.jar')
-    implementation 'org.bukkit.craftbukkit:Craftbukkit_1_12:1.12.1'
-    implementation 'org.bukkit.craftbukkit:Craftbukkit_1_11:1.11'
-    implementation 'org.bukkit.craftbukkit:Craftbukkit_1_10:1.10'
-    implementation 'org.bukkit.craftbukkit:Craftbukkit_1_9:1.9.4'
-    implementation 'org.bukkit.craftbukkit:Craftbukkit_1_7:1.7.10'
-    implementation 'com.github.MilkBowl:VaultAPI:1.7'
-    implementation 'me.ryanhamshire:GriefPrevention:11.5.2'
-    implementation 'net.jzx7:regios:5.9.9'
-    implementation 'com.bekvon.bukkit.residence:Residence:4.5._13.1'
-    implementation 'com.palmergames.bukkit:towny:0.84.0.9'
-    implementation 'com.worldcretornica:plotme_core:0.16.3'
+    compileOnly files('../core/lib/server.jar')
+    compileOnly 'org.bukkit.craftbukkit:Craftbukkit_1_12:1.12.1'
+    compileOnly 'org.bukkit.craftbukkit:Craftbukkit_1_11:1.11'
+    compileOnly 'org.bukkit.craftbukkit:Craftbukkit_1_10:1.10'
+    compileOnly 'org.bukkit.craftbukkit:Craftbukkit_1_9:1.9.4'
+    compileOnly 'org.bukkit.craftbukkit:Craftbukkit_1_7:1.7.10'
+    compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
+    compileOnly 'me.ryanhamshire:GriefPrevention:11.5.2'
+    compileOnly 'net.jzx7:regios:5.9.9'
+    compileOnly 'com.bekvon.bukkit.residence:Residence:4.5._13.1'
+    compileOnly 'com.palmergames.bukkit:towny:0.84.0.9'
+    compileOnly 'com.worldcretornica:plotme_core:0.16.3'
     implementation 'junit:junit:4.13.1'
     implementation 'com.sk89q.worldedit:worldedit-bukkit:6.1.5'
     implementation 'com.sk89q.worldedit:worldedit-core:6.1.4-SNAPSHOT'
-    implementation files("../core/lib/PlotSquared-Bukkit-3.830.jar")
-    implementation files("../core/lib/BlocksHub.jar")
-    implementation 'com.thevoxelbox.voxelsniper:voxelsniper:5.171.0'
-    implementation 'com.comphenix.protocol:ProtocolLib:5.0.0'
-    implementation 'com.wasteofplastic:askyblock:3.0.9.4'
+    compileOnly files("../core/lib/PlotSquared-Bukkit-3.830.jar")
+    compileOnly files("../core/lib/BlocksHub.jar")
+    compileOnly 'com.thevoxelbox.voxelsniper:voxelsniper:5.171.0'
+    compileOnly 'com.comphenix.protocol:ProtocolLib:5.0.0'
+    compileOnly 'com.wasteofplastic:askyblock:3.0.9.4'
     implementation('org.inventivetalent:mapmanager:1.7.2-SNAPSHOT') {
         transitive = false
     }
+    implementation 'org.xerial:sqlite-jdbc:3.46.0.0'
+
 }
 
 clean {
@@ -55,7 +57,8 @@ processResources {
 shadowJar {
     dependencies {
         include(dependency('com.github.luben:zstd-jni:1.5.5-5'))
-        include(dependency('it.unimi.dsi:fastutil:8.5.12'))
+        include(dependency('it.unimi.dsi:fastutil:8.5.13'))
+        include(dependency("org.xerial:sqlite-jdbc:3.46.0.0"))
         include(dependency(':core'))
     }
     archiveFileName = "${parent.name}-${project.name}-${parent.version}.jar"
